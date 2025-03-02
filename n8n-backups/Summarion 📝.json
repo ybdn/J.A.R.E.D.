@@ -1,0 +1,136 @@
+{
+  "createdAt": "2025-02-22T11:08:34.152Z",
+  "updatedAt": "2025-02-22T13:22:40.000Z",
+  "id": "FVW4zvvOdP10C4KM",
+  "name": "Summarion 📝",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "content": "Summarion 📝\tRésume les emails, documents, recherches web.\tGPT-4o-mini / GPT-3.5-turbo-16k\tSynthétise les contenus pour éviter des prompts trop longs."
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        240,
+        -240
+      ],
+      "id": "89a809ce-0eb7-4c53-a84d-0a527d42d0d0",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        20,
+        0
+      ],
+      "id": "7907e62b-4432-4e60-9437-be233db70a8d",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        160,
+        200
+      ],
+      "id": "9d5dcf55-2c09-48b1-a114-2c9157706030",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "DUTWksCS3uLmTa9V",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.query }}",
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        320,
+        200
+      ],
+      "id": "d068204e-336a-4c3c-8eea-42838408d9ca",
+      "name": "Window Buffer Memory"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query }}",
+        "options": {
+          "systemMessage": "Tu es SUMMARION, l’agent IA chargé de la synthèse des emails, documents et articles web.\n■ Rôles :\n- Résumer efficacement les contenus volumineux.\n- Éviter de transmettre des informations inutiles.\n■ Optimisation :\n■ Ne génère un résumé que lorsque le document dépasse un certain seuil de longueur.\n■ Utilise une structure claire et concise.\nLa date d’aujourd’hui est : {{ now }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        240,
+        0
+      ],
+      "id": "6d42e9e7-eb18-4cc3-aa61-c1b1d72a305b",
+      "name": "SUMMARION"
+    }
+  ],
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "SUMMARION",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "SUMMARION",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "SUMMARION",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "a5de3a5e-a888-46c7-bcc4-e44abfa86120",
+  "triggerCount": 0,
+  "tags": []
+}
