@@ -1,16 +1,17 @@
 {
   "createdAt": "2025-03-02T20:16:06.670Z",
-  "updatedAt": "2025-03-02T21:55:24.000Z",
+  "updatedAt": "2025-03-02T22:34:32.000Z",
   "id": "pZMvEnZlZ4wZUbVg",
   "name": "Backup Workflows",
-  "active": false,
+  "active": true,
   "nodes": [
     {
       "parameters": {
         "rule": {
           "interval": [
             {
-              "field": "seconds"
+              "field": "seconds",
+              "secondsInterval": 90
             }
           ]
         }
@@ -32,7 +33,7 @@
       "type": "n8n-nodes-base.n8n",
       "typeVersion": 1,
       "position": [
-        220,
+        20,
         0
       ],
       "id": "647db5f2-4a0f-427c-966c-e9555b30aa34",
@@ -47,6 +48,7 @@
     {
       "parameters": {
         "resource": "file",
+        "operation": "edit",
         "owner": {
           "__rl": true,
           "value": "ybdn",
@@ -61,15 +63,15 @@
           "cachedResultName": "J.A.R.E.D.",
           "cachedResultUrl": "https://github.com/ybdn/J.A.R.E.D."
         },
-        "filePath": "=\"n8n-backup_{{ $now.format('ddMMyyyy-HHmmss') }}\"",
-        "fileContent": "={{ $json.nodes }}",
-        "commitMessage": "={{ $json.createdAt }}"
+        "filePath": "=n8n-backups/{{ $('n8n').item.json.name }}.json",
+        "binaryData": true,
+        "commitMessage": "=Sauvegarde du {{ $('Schedule Trigger').item.json['Readable date'] }}"
       },
       "type": "n8n-nodes-base.github",
       "typeVersion": 1,
       "position": [
-        1340,
-        -140
+        480,
+        0
       ],
       "id": "557f9fb0-3b95-45b4-8e26-67350f54c651",
       "name": "GitHub",
@@ -82,63 +84,22 @@
     },
     {
       "parameters": {
-        "options": {}
+        "operation": "toJson",
+        "mode": "each",
+        "binaryPropertyName": "=data",
+        "options": {
+          "format": "={{ true }}",
+          "fileName": "={{ $json.name }}.json"
+        }
       },
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 3,
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
       "position": [
-        440,
+        240,
         0
       ],
-      "id": "3160594e-5de5-41b2-b408-b662245967bd",
-      "name": "Loop Over Items1"
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.noOp",
-      "name": "Replace Me",
-      "typeVersion": 1,
-      "position": [
-        1240,
-        120
-      ],
-      "id": "e388edba-f896-4fae-850d-e399b354b666"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "e18df1e2-2053-4172-aef5-2ca88e331a1c",
-              "name": "workflow_data",
-              "value": "={{$json[\"nodes\"][0]}}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        1160,
-        -140
-      ],
-      "id": "87dc177f-30c6-437a-9301-38daf45adf20",
-      "name": "Edit Fields"
-    },
-    {
-      "parameters": {
-        "jsCode": "return $input.first().json[\"When Executed by Another Workflow\"].main[0][0];\n"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        660,
-        -100
-      ],
-      "id": "f7964891-0042-4b49-818c-585c0e4ae115",
-      "name": "Code"
+      "id": "df4f35f2-b15f-4c7b-9547-f48937b1df99",
+      "name": "Convert to File"
     }
   ],
   "connections": {
@@ -157,58 +118,18 @@
       "main": [
         [
           {
-            "node": "Loop Over Items1",
+            "node": "Convert to File",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Loop Over Items1": {
-      "main": [
-        [
-          {
-            "node": "Code",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Replace Me",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Replace Me": {
-      "main": [
-        [
-          {
-            "node": "Loop Over Items1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Edit Fields": {
+    "Convert to File": {
       "main": [
         [
           {
             "node": "GitHub",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Code": {
-      "main": [
-        [
-          {
-            "node": "Edit Fields",
             "type": "main",
             "index": 0
           }
@@ -219,12 +140,16 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "staticData": null,
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
   "meta": {
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "994bf070-a787-4df6-8bfa-41141da5814c",
-  "triggerCount": 0,
+  "versionId": "07068f6f-3a86-4d59-9898-b48a18b15d2c",
+  "triggerCount": 1,
   "tags": []
 }
