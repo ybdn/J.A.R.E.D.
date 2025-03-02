@@ -1,0 +1,135 @@
+{
+  "createdAt": "2025-02-28T19:40:40.850Z",
+  "updatedAt": "2025-02-28T19:41:04.000Z",
+  "id": "eUJXbrsDodYAblws",
+  "name": "PLANNER",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "content": "Planner 📅\tOrganise et hiérarchise les tâches et événements.\tGPT-3.5-turbo-0125\tGère les tâches et plannings pour améliorer l’organisation."
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        -200
+      ],
+      "id": "f89f33ba-004d-48f5-bbcc-3a112770a77d",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-3.5-turbo-0125",
+          "mode": "list",
+          "cachedResultName": "gpt-3.5-turbo-0125"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        120,
+        220
+      ],
+      "id": "5512d12e-732e-40fc-9386-26e596b0f405",
+      "name": "OpenAI Chat Model5",
+      "credentials": {
+        "openAiApi": {
+          "id": "DUTWksCS3uLmTa9V",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.query }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        300,
+        220
+      ],
+      "id": "b8ad22ff-d2b4-4c03-a68c-d2b291d7e9a1",
+      "name": "Window Buffer Memory5"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        -20
+      ],
+      "id": "a3c5e036-e848-44bb-95f4-109f6a493f2d",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query }}",
+        "options": {
+          "systemMessage": "=Tu es PLANNER, l’agent IA chargé de la gestion et de l’optimisation de mon emploi du temps.\n■ Rôles :\n- Hiérarchiser les tâches et événements en fonction de leur priorité.\n- Proposer une répartition intelligente des rendez-vous.\n■ Optimisation :\n■ Vérifie les disponibilités avant de proposer une planification.\n■ Évite les conflits d’horaire.\nLa date d’aujourd’hui est : {{ $now }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        200,
+        -20
+      ],
+      "id": "121da443-1a27-4416-8554-19df7b9a14c1",
+      "name": "PLANNER"
+    }
+  ],
+  "connections": {
+    "OpenAI Chat Model5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "PLANNER",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory5": {
+      "ai_memory": [
+        [
+          {
+            "node": "PLANNER",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "PLANNER",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "0ecd2826-9436-46bf-8a6d-8f22feaa4df6",
+  "triggerCount": 0,
+  "tags": []
+}
