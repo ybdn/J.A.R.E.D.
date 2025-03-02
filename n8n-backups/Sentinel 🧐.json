@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-02-22T11:08:10.254Z",
-  "updatedAt": "2025-02-22T13:59:25.000Z",
+  "updatedAt": "2025-03-02T22:39:45.000Z",
   "id": "8dshi4CBtKl4Mvg4",
   "name": "Sentinel 🧐",
   "active": false,
@@ -87,6 +87,19 @@
       ],
       "id": "cd99e454-ebd5-4bc2-adbf-e60916e27f8c",
       "name": "SENTINEL"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        580,
+        -40
+      ],
+      "id": "5d66a697-1029-4ce4-84e0-4e91f8484bc6",
+      "name": "AI Agent"
     }
   ],
   "connections": {
@@ -122,6 +135,17 @@
           }
         ]
       ]
+    },
+    "SENTINEL": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -130,7 +154,7 @@
   "staticData": null,
   "meta": null,
   "pinData": {},
-  "versionId": "96e8e010-399d-451f-b186-03b5b5c274e5",
+  "versionId": "9d084a60-a12c-450d-ae35-7d195b5b7b4d",
   "triggerCount": 0,
   "tags": []
 }
