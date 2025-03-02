@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-03-02T20:16:06.670Z",
-  "updatedAt": "2025-03-02T22:41:47.000Z",
+  "updatedAt": "2025-03-02T22:42:43.000Z",
   "id": "pZMvEnZlZ4wZUbVg",
   "name": "Backup Workflows",
   "active": true,
@@ -11,7 +11,7 @@
           "interval": [
             {
               "field": "seconds",
-              "secondsInterval": 10
+              "secondsInterval": 60
             }
           ]
         }
@@ -149,7 +149,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "9c4d113a-4a1a-4b50-85e5-553bbc67374d",
+  "versionId": "a2300ea6-bad6-4b44-bf72-f653236da4ef",
   "triggerCount": 1,
   "tags": []
 }
