@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-02-20T19:18:29.181Z",
-  "updatedAt": "2025-03-03T10:14:38.000Z",
+  "updatedAt": "2025-03-03T23:40:46.000Z",
   "id": "MZgv9AjDQQ0aLi1E",
   "name": "JARED",
   "active": true,
@@ -685,6 +685,91 @@
       ],
       "id": "67c490a2-e459-4edd-a1b0-9f206c4e80b4",
       "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "name": "NISTSolution",
+        "description": "Appelle cet outil pour toutes les questions relatives aux fichiers .nist ou format NIST"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
+      "typeVersion": 1,
+      "position": [
+        4720,
+        800
+      ],
+      "id": "566b2162-4f1a-4eb1-a8a2-4dd678dc2a08",
+      "name": "Answer questions with a vector store"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        4960,
+        940
+      ],
+      "id": "c385c589-d4a0-42d2-8c5c-db4181ff92c1",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "DUTWksCS3uLmTa9V",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "jared",
+          "mode": "list",
+          "cachedResultName": "jared"
+        },
+        "options": {
+          "pineconeNamespace": "NIST Solutions"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        4640,
+        960
+      ],
+      "id": "6c113f3a-6867-43b6-8016-9b5724ef8b4b",
+      "name": "Pinecone Vector Store",
+      "credentials": {
+        "pineconeApi": {
+          "id": "qeIz9DAd1d4jW2wv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        4740,
+        1180
+      ],
+      "id": "13ca9636-e0b5-4d1c-947f-6a7a6ea4017b",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "DUTWksCS3uLmTa9V",
+          "name": "OpenAi account"
+        }
+      }
     }
   ],
   "connections": {
@@ -958,6 +1043,50 @@
           }
         ]
       ]
+    },
+    "Answer questions with a vector store": {
+      "ai_tool": [
+        [
+          {
+            "node": "J.A.R.E.D.",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Answer questions with a vector store",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Answer questions with a vector store",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -968,7 +1097,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "87483847-0794-497a-a665-e49202028d8e",
+  "versionId": "fd77a5bb-2aa2-4f62-b1c6-fa87148eaac7",
   "triggerCount": 2,
   "tags": []
 }
