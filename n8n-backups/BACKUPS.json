@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-03-02T20:16:06.670Z",
-  "updatedAt": "2025-03-03T12:25:53.000Z",
+  "updatedAt": "2025-03-03T12:31:20.000Z",
   "id": "pZMvEnZlZ4wZUbVg",
   "name": "BACKUPS",
   "active": true,
@@ -10,8 +10,7 @@
         "rule": {
           "interval": [
             {
-              "field": "seconds",
-              "secondsInterval": 60
+              "field": "minutes"
             }
           ]
         }
@@ -149,7 +148,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "6a8ffaed-d0a0-4b47-a3b3-e2b727c77ae0",
+  "versionId": "6d0c9b3a-d022-444b-a846-36265477b986",
   "triggerCount": 1,
   "tags": []
 }
