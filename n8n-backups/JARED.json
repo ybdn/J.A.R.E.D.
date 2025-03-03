@@ -1,1 +1,974 @@
-
+{
+  "createdAt": "2025-02-20T19:18:29.181Z",
+  "updatedAt": "2025-03-03T10:14:38.000Z",
+  "id": "MZgv9AjDQQ0aLi1E",
+  "name": "JARED",
+  "active": true,
+  "nodes": [
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "fb144b18-af6f-4ff8-a941-c84a08fe6053",
+                    "leftValue": "={{ $json.voice.file_unique_id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Voix"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.text }}",
+                    "rightValue": "[null]",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Texte"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1700,
+        0
+      ],
+      "id": "29f20016-b2dc-4777-a5b1-64f882f26614",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $('INPUT_Telegram').item.json.message.voice.file_id }}"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2080,
+        -120
+      ],
+      "id": "4d051bf4-a82d-429e-ad7b-9ac78f95e5b7",
+      "name": "Telegram",
+      "webhookId": "6a8fbd70-ea03-49d2-8d5d-eafc109116f6",
+      "credentials": {
+        "telegramApi": {
+          "id": "nQZiIP9oXBgOJZXe",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        2360,
+        -120
+      ],
+      "id": "35a09575-83a4-4846-9785-a8ff519df958",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "DUTWksCS3uLmTa9V",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        3740,
+        240
+      ],
+      "id": "3f020abb-ef16-4187-80f8-933cc6f380b8",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "DUTWksCS3uLmTa9V",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 8
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        3920,
+        340
+      ],
+      "id": "a4e84de4-7f92-4dd8-9d62-aa47ce319b5f",
+      "name": "Window Buffer Memory"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -220,
+        -60
+      ],
+      "id": "39a290d7-b9d1-4d88-af23-b2d8dd0242a3",
+      "name": "INPUT_Telegram",
+      "webhookId": "7a92c697-c916-40ee-9fc2-f14b42f87bb6",
+      "credentials": {
+        "telegramApi": {
+          "id": "nQZiIP9oXBgOJZXe",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "1141780707",
+        "text": "={{ $json.formattedOutput }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        5700,
+        20
+      ],
+      "id": "7438c32b-cc39-43e1-8b36-af64c0db285e",
+      "name": "OUTPUT_Telegram",
+      "webhookId": "d229ac28-904f-4c34-9834-d36c2a78138a",
+      "credentials": {
+        "telegramApi": {
+          "id": "nQZiIP9oXBgOJZXe",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nreturn {\n  formattedOutput: $json.output\n    .replace(/#/g, '')  // Supprime tous les #\n    .replace(/-\\s/g, '• ') // Remplace les tirets par des puces\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5080,
+        20
+      ],
+      "id": "7f0c4a4b-14a8-488d-897e-b7837b74b15d",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message.content }}",
+        "options": {
+          "systemMessage": "=Tu es J.A.R.E.D., l’IA orchestrateur de mon infrastructure. Tu as une armée d'agents à ta disposition pour me répondre de la meilleure façon qu'il soit.\nTa mission est de diriger efficacement les requêtes vers les agents spécialisés,\ntout en optimisant les flux de travail et la consommation de tokens.\n■ Règles générales :\n■ Tu n’exécutes jamais une tâche directement, mais tu délègues aux agents dédiés.\n■ Tu vérifies toujours si une tâche a déjà été effectuée avant d’appeler un agent.\n■ Tu minimises les appels API pour éviter les requêtes inutiles.\n■ Tu structures les réponses de manière claire et synthétique pour Telegram.\n■ Mode de fonctionnement :\n1■■ Analyse la requête utilisateur et détermine les agents à solliciter.\n2■■ Vérifie les données existantes avant d’envoyer une requête.\n3■■ Appelle le workflow correspondant dans n8n en utilisant le \"Call n8n Workflows Tool\".\n4■■ Rassemble les réponses des agents et renvoie un message structuré.\n■ Formatage Telegram :\n- **Gras** : **Texte en gras**\n- _Italique_ : _Texte en italique_\n- ||Spoiler|| : ||Texte en spoiler||\n- ~~Barré~~ : ~~Texte barré~~\n- `Chasse fixe` : ```Texte en chasse fixe```\n- <code>Code</code>\nLa date d’aujourd’hui est : {{ $now }}.\n\nExemples :\nExemple de prompt pour une interaction optimisée :\nJe souhaite organiser mes tâches pour la semaine, récupérer les dernières notes importantes, et s'assurer qu'aucun rendez-vous ne se chevauche dans mon agenda.\n\n1. REFINIO : Reformule la requête pour clarifier et optimiser les objectifs.\n2. PLANNER : Planifie les tâches de la semaine en priorisant les urgentes.\n3. NOTIONIS : Récupère et structure les notes essentielles.\n4. CHRONOS : Vérifie l'agenda pour gérer les chevauchements d'événements.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        4020,
+        20
+      ],
+      "id": "23f531da-718d-43a2-9574-e7c39e12ffc2",
+      "name": "J.A.R.E.D."
+    },
+    {
+      "parameters": {
+        "name": "CHRONOS",
+        "description": "Appelle le workflow CHRONOS pour interagir avec Google Agenda. Vérifie la disponibilité avant de créer un événement et applique la couleur appropriée.",
+        "workflowId": {
+          "__rl": true,
+          "value": "zFxfSRcCJo7vDed4",
+          "mode": "list",
+          "cachedResultName": "CHRONOS"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        4780,
+        200
+      ],
+      "id": "d2709649-685b-4c5c-b159-62abce622343",
+      "name": "CHRONOS"
+    },
+    {
+      "parameters": {
+        "name": "ARCHIVUS",
+        "description": "Appelle le workflow ARCHIVUS pour rechercher et organiser des fichiers. Priorise les fichiers récemment utilisés avant d'effectuer une recherche globale.",
+        "workflowId": {
+          "__rl": true,
+          "value": "m2k9MVNT4uCijF2U",
+          "mode": "list",
+          "cachedResultName": "Archivus 📂"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        4940,
+        200
+      ],
+      "id": "fd56e558-cf2f-46b5-b3da-b3fafa86d9a1",
+      "name": "ARCHIVUS"
+    },
+    {
+      "parameters": {
+        "name": "NEXUS",
+        "description": "Appelle le workflow NEXUS pour interagir avec Google Contacts. Vérifie les contacts existants avant toute modification ou ajout.",
+        "workflowId": {
+          "__rl": true,
+          "value": "ZQYix75iAaAER8pm",
+          "mode": "list",
+          "cachedResultName": "Nexus 📇"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        4780,
+        360
+      ],
+      "id": "7952f5dc-f237-47b5-9154-60706cf79277",
+      "name": "NEXUS"
+    },
+    {
+      "parameters": {
+        "name": "HERMES",
+        "description": "Appelle le workflow HERMÈS pour récupérer et traiter les emails Gmail. Trie les emails en fonction de leur priorité avant de les analyser.",
+        "workflowId": {
+          "__rl": true,
+          "value": "vTCjUeqEhEPrWkZI",
+          "mode": "list",
+          "cachedResultName": "HERMES"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        4940,
+        360
+      ],
+      "id": "ef74c9f5-e8ef-4741-824c-f1bd0f604b55",
+      "name": "HERMES"
+    },
+    {
+      "parameters": {
+        "name": "TASKMASTER",
+        "description": "Appelle le workflow TASKMASTER pour gérer les tâches Google Tasks. Vérifie les tâches en cours avant de générer une nouvelle entrée.",
+        "workflowId": {
+          "__rl": true,
+          "value": "WysyXwKll6hIBXYW",
+          "mode": "list",
+          "cachedResultName": "TASKMASTER"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        4780,
+        520
+      ],
+      "id": "26051457-8b43-4e36-82ab-d7c5286d5de7",
+      "name": "TASKMASTER"
+    },
+    {
+      "parameters": {
+        "name": "NOTIONIS",
+        "description": "Appelle le workflow NOTIONIS pour organiser et structurer les notes Google Keep. Vérifie les notes existantes avant toute création.",
+        "workflowId": {
+          "__rl": true,
+          "value": "hcf2F6ZAEwbYn9VD",
+          "mode": "list",
+          "cachedResultName": "NOTIONIS"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        4940,
+        520
+      ],
+      "id": "4bcaddc9-ec8d-41b9-9ed0-c9b0900cc005",
+      "name": "NOTIONIS"
+    },
+    {
+      "parameters": {
+        "name": "SENTINEL",
+        "description": "Appelle le workflow SENTINEL pour analyser un document et extraire les informations importantes.",
+        "workflowId": {
+          "__rl": true,
+          "value": "IALIALgmAY9eCcby",
+          "mode": "list",
+          "cachedResultName": "SENTINEL"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        4060,
+        800
+      ],
+      "id": "62df0212-c2c5-4555-8aad-f8cb3123eda7",
+      "name": "SENTINEL"
+    },
+    {
+      "parameters": {
+        "name": "SUMMARION",
+        "description": "Appelle le workflow SUMMARION pour générer un résumé optimisé d’un document volumineux.",
+        "workflowId": {
+          "__rl": true,
+          "value": "FVW4zvvOdP10C4KM",
+          "mode": "list",
+          "cachedResultName": "Summarion 📝"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        4180,
+        800
+      ],
+      "id": "fdc6be70-da2d-46c2-8600-aae83395042d",
+      "name": "SUMMARION"
+    },
+    {
+      "parameters": {
+        "name": "SCRIPTO",
+        "description": "Appelle le workflow SCRIPTO pour générer une réponse rédigée avec précision et clarté.",
+        "workflowId": {
+          "__rl": true,
+          "value": "q2L5Bdkap3RrdWoN",
+          "mode": "list",
+          "cachedResultName": "Scripto ✍️"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        4060,
+        980
+      ],
+      "id": "e971172b-145d-4fa8-928b-bb0e358e4efe",
+      "name": "SCRIPTO"
+    },
+    {
+      "parameters": {
+        "name": "PLANNER",
+        "description": "Appelle le workflow PLANNER pour organiser et prioriser les tâches et événements en fonction de leur importance.",
+        "workflowId": {
+          "__rl": true,
+          "value": "eUJXbrsDodYAblws",
+          "mode": "list",
+          "cachedResultName": "PLANNER"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        4180,
+        980
+      ],
+      "id": "e13a221b-2d21-4a37-b3b5-395765ecf4de",
+      "name": "PLANNER"
+    },
+    {
+      "parameters": {
+        "name": "REFINIO",
+        "description": "Appelle le workflow REFINIO pour reformuler et optimiser une requête avant exécution afin de limiter la consommation de tokens.",
+        "workflowId": {
+          "__rl": true,
+          "value": "5yBNIsMPTwhuN7KL",
+          "mode": "list",
+          "cachedResultName": "REFINIO"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        4300,
+        980
+      ],
+      "id": "3e423fb0-6a13-4cf2-87c6-82f9105178b7",
+      "name": "REFINIO"
+    },
+    {
+      "parameters": {
+        "name": "ORACLE",
+        "description": "Appelle le workflow ORACLE pour récupérer et structurer les résultats d’une recherche web.",
+        "workflowId": {
+          "__rl": true,
+          "value": "wcZvZFPdav4rDoqD",
+          "mode": "list",
+          "cachedResultName": "ORACLE"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        4300,
+        800
+      ],
+      "id": "180517e2-ebe8-4480-96b0-aa0a84af09ca",
+      "name": "ORACLE"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "f01f15e1-32bb-41c5-bc44-080eef9f37fa",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -220,
+        140
+      ],
+      "id": "66a5fe4c-536c-4648-81c0-ae51a39499e4",
+      "name": "Siri",
+      "webhookId": "f01f15e1-32bb-41c5-bc44-080eef9f37fa"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "28fd1ce7-dd32-4668-b884-4653ccaa9907",
+              "name": "source",
+              "value": "iphone",
+              "type": "string"
+            },
+            {
+              "id": "df71a9f7-ad23-471c-b5f4-4279526903a0",
+              "name": "user_id",
+              "value": "ybdn",
+              "type": "string"
+            },
+            {
+              "id": "6e0e8f74-0dda-4bd7-b9fa-34f8798ee34f",
+              "name": "voice",
+              "value": "={{ $json.message.voice }}",
+              "type": "object"
+            },
+            {
+              "id": "72ab37da-1443-4556-bf22-d4fe93b8954d",
+              "name": "text",
+              "value": "={{ $json.message.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        660,
+        0
+      ],
+      "id": "9ba8d900-fb95-4207-b8d4-fbc64e7d4100",
+      "name": "input_Clear"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7ed55efc-c126-4749-94ef-77da4c1a2ce3",
+              "name": "sessionId",
+              "value": "={{ Math.floor(Math.random() * 1000) }}",
+              "type": "number"
+            },
+            {
+              "id": "674e79e7-9b09-4326-8308-2d5df0356b1c",
+              "name": "source",
+              "value": "={{ $('input_Clear').item.json.source }}",
+              "type": "string"
+            },
+            {
+              "id": "22a7e1c1-7b76-4581-addf-f589a469d3de",
+              "name": "user_id",
+              "value": "={{ $('input_Clear').item.json.user_id }}",
+              "type": "string"
+            },
+            {
+              "id": "b727837e-e46c-4593-9000-c526fc9837a8",
+              "name": "message.content",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3000,
+        20
+      ],
+      "id": "c11af687-6f71-49d7-aee0-6791ee2e2b32",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "19f6e9e7-4421-4757-b452-d183343b226c",
+              "name": "message.text",
+              "value": "={{ $json.body.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        140
+      ],
+      "id": "67c490a2-e459-4edd-a1b0-9f206c4e80b4",
+      "name": "Edit Fields1"
+    }
+  ],
+  "connections": {
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "J.A.R.E.D.",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "J.A.R.E.D.",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "INPUT_Telegram": {
+      "main": [
+        [
+          {
+            "node": "input_Clear",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "OUTPUT_Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "J.A.R.E.D.": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CHRONOS": {
+      "ai_tool": [
+        [
+          {
+            "node": "J.A.R.E.D.",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ARCHIVUS": {
+      "ai_tool": [
+        [
+          {
+            "node": "J.A.R.E.D.",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NEXUS": {
+      "ai_tool": [
+        [
+          {
+            "node": "J.A.R.E.D.",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HERMES": {
+      "ai_tool": [
+        [
+          {
+            "node": "J.A.R.E.D.",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TASKMASTER": {
+      "ai_tool": [
+        [
+          {
+            "node": "J.A.R.E.D.",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NOTIONIS": {
+      "ai_tool": [
+        [
+          {
+            "node": "J.A.R.E.D.",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SENTINEL": {
+      "ai_tool": [
+        [
+          {
+            "node": "J.A.R.E.D.",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SUMMARION": {
+      "ai_tool": [
+        [
+          {
+            "node": "J.A.R.E.D.",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SCRIPTO": {
+      "ai_tool": [
+        [
+          {
+            "node": "J.A.R.E.D.",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PLANNER": {
+      "ai_tool": [
+        [
+          {
+            "node": "J.A.R.E.D.",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "REFINIO": {
+      "ai_tool": [
+        [
+          {
+            "node": "J.A.R.E.D.",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ORACLE": {
+      "ai_tool": [
+        [
+          {
+            "node": "J.A.R.E.D.",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Siri": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "input_Clear": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "J.A.R.E.D.",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "input_Clear",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "87483847-0794-497a-a665-e49202028d8e",
+  "triggerCount": 2,
+  "tags": []
+}
