@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-03-02T20:16:06.670Z",
-  "updatedAt": "2025-03-03T10:21:18.000Z",
+  "updatedAt": "2025-03-03T10:25:06.000Z",
   "id": "pZMvEnZlZ4wZUbVg",
   "name": "BACKUPS",
   "active": true,
@@ -65,7 +65,7 @@
         },
         "filePath": "=n8n-backups/{{ $('n8n').item.json.name }}.json",
         "binaryData": true,
-        "commitMessage": "=Sauvegarde du {{ $('Schedule Trigger').item.json['Readable date'] }}"
+        "commitMessage": "=Sauvegarde du {{ $now.format('dd.MM.yyyy à HH:mm:ss') }}"
       },
       "type": "n8n-nodes-base.github",
       "typeVersion": 1,
@@ -149,7 +149,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "94947f23-d133-4bcc-9f31-258d673c9fe6",
+  "versionId": "be2201f4-98e4-4078-8d0c-985375d2ca21",
   "triggerCount": 1,
   "tags": []
 }
