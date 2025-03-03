@@ -1,1 +1,308 @@
-
+{
+  "createdAt": "2025-02-28T19:34:05.862Z",
+  "updatedAt": "2025-02-28T19:39:59.000Z",
+  "id": "WysyXwKll6hIBXYW",
+  "name": "TASKMASTER",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "content": "TaskMaster ✅\tGestion des tâches Google Tasks.\tGPT-3.5-turbo-0125\tAjoute, modifie, récupère des tâches."
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        360,
+        60
+      ],
+      "id": "cd125ad1-89ff-4305-88df-80679f85a46c",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-3.5-turbo-0125",
+          "mode": "list",
+          "cachedResultName": "gpt-3.5-turbo-0125"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        260,
+        500
+      ],
+      "id": "c67acb18-14ba-4dc0-a5f1-01ceca1b73e6",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "DUTWksCS3uLmTa9V",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.query }}",
+        "contextWindowLength": 3
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        440,
+        500
+      ],
+      "id": "c7ec3e74-ca5f-4052-9342-ba38716f1107",
+      "name": "Window Buffer Memory2"
+    },
+    {
+      "parameters": {
+        "agent": "openAiFunctionsAgent",
+        "promptType": "define",
+        "text": "={{ $json.query }}",
+        "options": {
+          "systemMessage": "=Tu es TASKMASTER, l’agent IA chargé de la gestion des tâches Google Tasks.\n■ Rôles :\n- Ajouter, organiser et récupérer des tâches.\n- Vérifier les tâches existantes avant d’en créer une nouvelle.\n■ Optimisation :\n■ Vérifie si une tâche similaire existe avant d’en créer une nouvelle.\n■ Évite les appels API redondants.\nLa date d’aujourd’hui est : {{ $now }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        340,
+        260
+      ],
+      "id": "4ca21d46-64a3-470d-9753-c6e12005f512",
+      "name": "TASKMASTER1"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        100,
+        260
+      ],
+      "id": "88a5a8cf-b4e3-4818-ac0d-e81ee95db1e1",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "project": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Project_Name_or_ID', ``, 'string') }}",
+          "mode": "id"
+        },
+        "labels": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Label_Names_or_IDs', ``, 'string') }}",
+        "content": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Content', ``, 'string') }}",
+        "options": {
+          "description": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Description', ``, 'string') }}",
+          "dueDateTime": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Due_Date_Time', ``, 'string') }}",
+          "dueLang": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Due_String_Locale', ``, 'string') }}",
+          "dueString": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Due_String', ``, 'string') }}",
+          "priority": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Priority', ``, 'number') }}"
+        }
+      },
+      "type": "n8n-nodes-base.todoistTool",
+      "typeVersion": 2.1,
+      "position": [
+        680,
+        500
+      ],
+      "id": "22dc0f99-c930-4c95-aabc-9d5f482d44f8",
+      "name": "Todoist",
+      "credentials": {
+        "todoistApi": {
+          "id": "ctFcr67LsFILnPDe",
+          "name": "Todoist account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.todoistTool",
+      "typeVersion": 2.1,
+      "position": [
+        800,
+        500
+      ],
+      "id": "768f5ea1-1319-4290-abb9-a80e41271d8b",
+      "name": "Todoist1",
+      "credentials": {
+        "todoistApi": {
+          "id": "ctFcr67LsFILnPDe",
+          "name": "Todoist account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "close",
+        "taskId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task_ID', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.todoistTool",
+      "typeVersion": 2.1,
+      "position": [
+        680,
+        660
+      ],
+      "id": "45d76538-c0ea-40b1-86bb-c10f0271fd82",
+      "name": "Todoist2",
+      "credentials": {
+        "todoistApi": {
+          "id": "ctFcr67LsFILnPDe",
+          "name": "Todoist account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "taskId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task_ID', ``, 'string') }}",
+        "updateFields": {}
+      },
+      "type": "n8n-nodes-base.todoistTool",
+      "typeVersion": 2.1,
+      "position": [
+        800,
+        660
+      ],
+      "id": "b26c2316-a80d-48c7-8398-bd8d859a5b76",
+      "name": "Todoist3",
+      "credentials": {
+        "todoistApi": {
+          "id": "ctFcr67LsFILnPDe",
+          "name": "Todoist account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "taskId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task_ID', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.todoistTool",
+      "typeVersion": 2.1,
+      "position": [
+        920,
+        580
+      ],
+      "id": "fc5fcee0-2c7d-4644-98ff-751b670bd81a",
+      "name": "Todoist4",
+      "credentials": {
+        "todoistApi": {
+          "id": "ctFcr67LsFILnPDe",
+          "name": "Todoist account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "TASKMASTER1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory2": {
+      "ai_memory": [
+        [
+          {
+            "node": "TASKMASTER1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "TASKMASTER1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Todoist": {
+      "ai_tool": [
+        [
+          {
+            "node": "TASKMASTER1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Todoist1": {
+      "ai_tool": [
+        [
+          {
+            "node": "TASKMASTER1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Todoist2": {
+      "ai_tool": [
+        [
+          {
+            "node": "TASKMASTER1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Todoist3": {
+      "ai_tool": [
+        [
+          {
+            "node": "TASKMASTER1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Todoist4": {
+      "ai_tool": [
+        [
+          {
+            "node": "TASKMASTER1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "c6daffb1-1478-48ed-88bf-fb2ccd453405",
+  "triggerCount": 0,
+  "tags": []
+}
