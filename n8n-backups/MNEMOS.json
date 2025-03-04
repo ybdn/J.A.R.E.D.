@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-02-28T19:33:30.761Z",
-  "updatedAt": "2025-03-04T06:10:59.000Z",
+  "updatedAt": "2025-03-04T06:19:33.000Z",
   "id": "V4r7NBTt2NPzyUNR",
   "name": "MNEMOS",
   "active": false,
@@ -17,22 +17,6 @@
       ],
       "id": "da78e070-0a37-4cdd-97bb-bc4a1b3e32ff",
       "name": "Sticky Note"
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "9c5ba34b-4338-47c9-b2e3-868a0f96fcab",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
-      "position": [
-        0,
-        0
-      ],
-      "id": "7ffab3ed-b0e4-4dbd-aa66-ce83d09a0cfb",
-      "name": "Webhook",
-      "webhookId": "9c5ba34b-4338-47c9-b2e3-868a0f96fcab"
     },
     {
       "parameters": {
@@ -282,20 +266,22 @@
           "name": "OpenAi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d0ed0246-c7fa-4993-aadb-a7d6aff74c5f",
+      "name": "When Executed by Another Workflow"
     }
   ],
   "connections": {
-    "Webhook": {
-      "main": [
-        [
-          {
-            "node": "MNEMOS",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Pinecone Vector Store": {
       "ai_tool": [
         [
@@ -405,6 +391,17 @@
           }
         ]
       ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "MNEMOS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -415,7 +412,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "8fda1132-b538-4459-a23c-ae3132e79887",
+  "versionId": "33787c0f-c068-4ede-a8ae-bbcbdfdedf4c",
   "triggerCount": 0,
   "tags": []
 }
