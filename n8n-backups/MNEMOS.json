@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-02-28T19:33:30.761Z",
-  "updatedAt": "2025-03-04T06:26:18.000Z",
+  "updatedAt": "2025-03-04T20:49:22.000Z",
   "id": "V4r7NBTt2NPzyUNR",
   "name": "MNEMOS",
   "active": false,
@@ -21,7 +21,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "Tu es MNEMOS un agent IA chargé de traiter la mémoire des interactions de JARED une IA orchestratrice. Tu as à ta disposition des outils comme Pinecone et Google Drive.\n\nConsulte Pincone pour obtenir des informations. \n\nIMPORTANT !!! Ajoute toujours le contenu des requêtes dans le document 'memory-2' sur Google Drive.",
+        "text": "=Tu es MNEMOS un agent IA chargé de traiter la mémoire des interactions de JARED une IA orchestratrice. Tu as à ta disposition des outils comme Pinecone et Google Drive.\n\nConsulte Pincone pour obtenir des informations. \n\n!!! IMPORTANT : Mets TOUJOURS à jour le document 'memory-2' sur Google Drive grace à l'outil Update. Intègre dedans la requete et la réponse apportée.\n\nDate actuelle: {{ $now.format(\"dd'/'MM'/'yyyy\")}}.\nHeure actuelle : {{ $now.format(\"HH':'mm':'ss\") }}.",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -44,14 +44,14 @@
           "mode": "list",
           "cachedResultName": "mnemos"
         },
-        "topK": 10,
+        "topK": 100,
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
       "typeVersion": 1,
       "position": [
-        780,
-        160
+        920,
+        140
       ],
       "id": "ada49837-4dd2-46f4-9543-657c5df6c708",
       "name": "Pinecone Vector Store",
@@ -183,39 +183,6 @@
     },
     {
       "parameters": {
-        "inputDataFieldName": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Input_Data_Field_Name', ``, 'string') }}",
-        "name": "memory-2",
-        "driveId": {
-          "__rl": true,
-          "mode": "list",
-          "value": "My Drive"
-        },
-        "folderId": {
-          "__rl": true,
-          "value": "1DSbPkn0rzJ43p8-2e8PsCkJJ0u7rtlsY",
-          "mode": "list",
-          "cachedResultName": "MNEMOS",
-          "cachedResultUrl": "https://drive.google.com/drive/folders/1DSbPkn0rzJ43p8-2e8PsCkJJ0u7rtlsY"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleDriveTool",
-      "typeVersion": 3,
-      "position": [
-        520,
-        200
-      ],
-      "id": "258b9bbc-ab02-4907-aa59-72e4173e98db",
-      "name": "Google Drive1",
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "sgH2LdpLh4s3cCci",
-          "name": "Google Drive account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "model": {
           "__rl": true,
           "value": "gpt-4o",
@@ -261,8 +228,8 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "typeVersion": 1.2,
       "position": [
-        900,
-        320
+        1040,
+        340
       ],
       "id": "8dc8089b-1cca-4a4a-8e8b-f7e4b8ce6c67",
       "name": "Embeddings OpenAI1",
@@ -288,7 +255,9 @@
     },
     {
       "parameters": {
-        "operation": "download",
+        "descriptionType": "manual",
+        "toolDescription": "Mets à jour le document memory-2 dans Google Drive",
+        "operation": "update",
         "fileId": {
           "__rl": true,
           "value": "1PrXhVe_54saOn00Qr8NOPHFAodW_oYcA8rcfKut5Hjw",
@@ -296,16 +265,19 @@
           "cachedResultName": "memory-2",
           "cachedResultUrl": "https://docs.google.com/document/d/1PrXhVe_54saOn00Qr8NOPHFAodW_oYcA8rcfKut5Hjw/edit?usp=drivesdk"
         },
+        "changeFileContent": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Change_File_Content', ``, 'boolean') }}",
+        "inputDataFieldName": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Input_Data_Field_Name', ``, 'string') }}",
+        "newUpdatedFileName": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('New_Updated_File_Name', ``, 'string') }}",
         "options": {}
       },
       "type": "n8n-nodes-base.googleDriveTool",
       "typeVersion": 3,
       "position": [
-        680,
+        560,
         220
       ],
-      "id": "39e41507-8127-4385-a736-d048986937ad",
-      "name": "Google Drive2",
+      "id": "258b9bbc-ab02-4907-aa59-72e4173e98db",
+      "name": "Update",
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "sgH2LdpLh4s3cCci",
@@ -381,17 +353,6 @@
         ]
       ]
     },
-    "Google Drive1": {
-      "ai_tool": [
-        [
-          {
-            "node": "MNEMOS",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "OpenAI Chat Model": {
       "ai_languageModel": [
         [
@@ -436,7 +397,7 @@
         ]
       ]
     },
-    "Google Drive2": {
+    "Update": {
       "ai_tool": [
         [
           {
@@ -464,7 +425,7 @@
       }
     ]
   },
-  "versionId": "de7184c9-7a25-4550-8a1e-80eeefc3d2b2",
+  "versionId": "0ddfd422-5a8c-40a2-ae5c-b63004ccde0d",
   "triggerCount": 0,
   "tags": []
 }
