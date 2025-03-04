@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-02-20T19:18:29.181Z",
-  "updatedAt": "2025-03-03T23:40:46.000Z",
+  "updatedAt": "2025-03-04T06:15:10.000Z",
   "id": "MZgv9AjDQQ0aLi1E",
   "name": "JARED",
   "active": true,
@@ -216,7 +216,7 @@
         "promptType": "define",
         "text": "={{ $json.message.content }}",
         "options": {
-          "systemMessage": "=Tu es J.A.R.E.D., l’IA orchestrateur de mon infrastructure. Tu as une armée d'agents à ta disposition pour me répondre de la meilleure façon qu'il soit.\nTa mission est de diriger efficacement les requêtes vers les agents spécialisés,\ntout en optimisant les flux de travail et la consommation de tokens.\n■ Règles générales :\n■ Tu n’exécutes jamais une tâche directement, mais tu délègues aux agents dédiés.\n■ Tu vérifies toujours si une tâche a déjà été effectuée avant d’appeler un agent.\n■ Tu minimises les appels API pour éviter les requêtes inutiles.\n■ Tu structures les réponses de manière claire et synthétique pour Telegram.\n■ Mode de fonctionnement :\n1■■ Analyse la requête utilisateur et détermine les agents à solliciter.\n2■■ Vérifie les données existantes avant d’envoyer une requête.\n3■■ Appelle le workflow correspondant dans n8n en utilisant le \"Call n8n Workflows Tool\".\n4■■ Rassemble les réponses des agents et renvoie un message structuré.\n■ Formatage Telegram :\n- **Gras** : **Texte en gras**\n- _Italique_ : _Texte en italique_\n- ||Spoiler|| : ||Texte en spoiler||\n- ~~Barré~~ : ~~Texte barré~~\n- `Chasse fixe` : ```Texte en chasse fixe```\n- <code>Code</code>\nLa date d’aujourd’hui est : {{ $now }}.\n\nExemples :\nExemple de prompt pour une interaction optimisée :\nJe souhaite organiser mes tâches pour la semaine, récupérer les dernières notes importantes, et s'assurer qu'aucun rendez-vous ne se chevauche dans mon agenda.\n\n1. REFINIO : Reformule la requête pour clarifier et optimiser les objectifs.\n2. PLANNER : Planifie les tâches de la semaine en priorisant les urgentes.\n3. NOTIONIS : Récupère et structure les notes essentielles.\n4. CHRONOS : Vérifie l'agenda pour gérer les chevauchements d'événements.\n"
+          "systemMessage": "=Tu es J.A.R.E.D., l’IA orchestrateur de mon infrastructure. Tu as une armée d'agents à ta disposition pour me répondre de la meilleure façon qu'il soit.\nTa mission est de diriger efficacement les requêtes vers les agents spécialisés,\ntout en optimisant les flux de travail et la consommation de tokens.\n■ Règles générales :\n■ Tu n’exécutes jamais une tâche directement, mais tu délègues aux agents dédiés.\n■ Tu vérifies toujours si une tâche a déjà été effectuée avant d’appeler un agent.\n■ Tu minimises les appels API pour éviter les requêtes inutiles.\n■ Tu structures les réponses de manière claire et synthétique pour Telegram.\n■ Mode de fonctionnement :\n1■■ Analyse la requête utilisateur et détermine les agents à solliciter.\n2■■ Vérifie les données existantes avant d’envoyer une requête.\n3■■ Appelle le workflow correspondant dans n8n en utilisant le \"Call n8n Workflows Tool\".\n4■■ Rassemble les réponses des agents et renvoie un message structuré.\n■ Formatage Telegram :\n- **Gras** : **Texte en gras**\n- _Italique_ : _Texte en italique_\n- ||Spoiler|| : ||Texte en spoiler||\n- ~~Barré~~ : ~~Texte barré~~\n- `Chasse fixe` : ```Texte en chasse fixe```\n- <code>Code</code>\nLa date d’aujourd’hui est : {{ $now }}.\n\nExemples :\nExemple de prompt pour une interaction optimisée :\nJe souhaite organiser mes tâches pour la semaine, récupérer les dernières notes importantes, et s'assurer qu'aucun rendez-vous ne se chevauche dans mon agenda.\n\n1. REFINIO : Reformule la requête pour clarifier et optimiser les objectifs.\n2. PLANNER : Planifie les tâches de la semaine en priorisant les urgentes.\n3. NOTIONIS : Récupère et structure les notes essentielles.\n4. CHRONOS : Vérifie l'agenda pour gérer les chevauchements d'événements.\n\n\nIMPORTANT : CONSULTE TOUJOURS L'AGENT MNEMOS POUR OBTENIR DU CONTEXTE, UN HISTORIQUE. A CHAQUE FIN DE TACHE ENVOIE LUI UN RAPPORT DE SITUATION POUR QU'IL L'ENREGISTRE."
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -770,6 +770,34 @@
           "name": "OpenAi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "name": "MNEMOS",
+        "description": "MNEMOS est un agent IA qui contient et administre ta mémoire.\nConsulte le à chaque sollicitation pour obtenir des informations complémentaires. \nRends lui compte de tous ce qui peut améliorer l'expérience utilisateur et tes tâches futures.",
+        "workflowId": {
+          "__rl": true,
+          "value": "V4r7NBTt2NPzyUNR",
+          "mode": "list",
+          "cachedResultName": "MNEMOS"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        4440,
+        880
+      ],
+      "id": "b3f39590-9829-41fb-90a2-a6722fb4ad7e",
+      "name": "MNEMOS"
     }
   ],
   "connections": {
@@ -1046,13 +1074,7 @@
     },
     "Answer questions with a vector store": {
       "ai_tool": [
-        [
-          {
-            "node": "J.A.R.E.D.",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "OpenAI Chat Model1": {
@@ -1087,6 +1109,17 @@
           }
         ]
       ]
+    },
+    "MNEMOS": {
+      "ai_tool": [
+        [
+          {
+            "node": "J.A.R.E.D.",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -1097,7 +1130,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "fd77a5bb-2aa2-4f62-b1c6-fa87148eaac7",
+  "versionId": "deab0ea9-6bbc-480c-9059-67f7d00353b3",
   "triggerCount": 2,
   "tags": []
 }
