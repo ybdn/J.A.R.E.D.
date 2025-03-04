@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-02-28T19:33:30.761Z",
-  "updatedAt": "2025-03-04T06:00:04.000Z",
+  "updatedAt": "2025-03-04T06:10:59.000Z",
   "id": "V4r7NBTt2NPzyUNR",
   "name": "MNEMOS",
   "active": false,
@@ -37,7 +37,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "Tu es MNEMOS un agent IA chargé de traiter la mémoire des interactions de JARED une IA orchestratrice. Tu as à ta disposition des outils comme Pinecone et Google Drive",
+        "text": "Tu es MNEMOS un agent IA chargé de traiter la mémoire des interactions de JARED une IA orchestratrice. Tu as à ta disposition des outils comme Pinecone et Google Drive.\n\nConsulte Pincone pour obtenir des informations. \n\nIMPORTANT !!! Mets toujours à jour le document memory-2 dans Google Drive.",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -52,19 +52,22 @@
     {
       "parameters": {
         "mode": "retrieve-as-tool",
+        "toolName": "mnemos",
+        "toolDescription": "Retrouve ici le vector store relatif à la mémoire de J.A.R.E.D.",
         "pineconeIndex": {
           "__rl": true,
           "value": "mnemos",
           "mode": "list",
           "cachedResultName": "mnemos"
         },
+        "topK": 10,
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
       "typeVersion": 1,
       "position": [
-        580,
-        0
+        780,
+        160
       ],
       "id": "ada49837-4dd2-46f4-9543-657c5df6c708",
       "name": "Pinecone Vector Store",
@@ -100,10 +103,10 @@
         "operation": "download",
         "fileId": {
           "__rl": true,
-          "value": "1p54txc77ctjLsNxACb8U27MbcAIHPu40GrslQFVr9oM",
+          "value": "1PrXhVe_54saOn00Qr8NOPHFAodW_oYcA8rcfKut5Hjw",
           "mode": "list",
-          "cachedResultName": "memory-1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1p54txc77ctjLsNxACb8U27MbcAIHPu40GrslQFVr9oM/edit?usp=drivesdk"
+          "cachedResultName": "memory-2",
+          "cachedResultUrl": "https://docs.google.com/document/d/1PrXhVe_54saOn00Qr8NOPHFAodW_oYcA8rcfKut5Hjw/edit?usp=drivesdk"
         },
         "options": {}
       },
@@ -130,7 +133,7 @@
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
       "typeVersion": 1,
       "position": [
-        660,
+        580,
         640
       ],
       "id": "563013e0-91c5-4767-bcf9-9e025c9e6aee",
@@ -157,7 +160,7 @@
       "typeVersion": 1.2,
       "position": [
         420,
-        620
+        640
       ],
       "id": "94ef96f2-c8b1-46a1-8a73-5273fe1a3d32",
       "name": "Embeddings OpenAI",
@@ -170,19 +173,19 @@
     },
     {
       "parameters": {
-        "mode": "update",
+        "mode": "insert",
         "pineconeIndex": {
           "__rl": true,
           "value": "mnemos",
           "mode": "list",
           "cachedResultName": "mnemos"
         },
-        "id": "memory-1"
+        "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
       "typeVersion": 1,
       "position": [
-        460,
+        440,
         420
       ],
       "id": "4cebbceb-fb54-4306-9589-7ce0009289b4",
@@ -191,6 +194,92 @@
         "pineconeApi": {
           "id": "qeIz9DAd1d4jW2wv",
           "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "fileId": {
+          "__rl": true,
+          "value": "1PrXhVe_54saOn00Qr8NOPHFAodW_oYcA8rcfKut5Hjw",
+          "mode": "list",
+          "cachedResultName": "memory-2",
+          "cachedResultUrl": "https://docs.google.com/document/d/1PrXhVe_54saOn00Qr8NOPHFAodW_oYcA8rcfKut5Hjw/edit?usp=drivesdk"
+        },
+        "changeFileContent": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Change_File_Content', ``, 'boolean') }}",
+        "newUpdatedFileName": "memory-2",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDriveTool",
+      "typeVersion": 3,
+      "position": [
+        520,
+        200
+      ],
+      "id": "258b9bbc-ab02-4907-aa59-72e4173e98db",
+      "name": "Google Drive1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "sgH2LdpLh4s3cCci",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        100,
+        180
+      ],
+      "id": "4e724bfb-a1d8-4703-a361-879475aed523",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "DUTWksCS3uLmTa9V",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        320,
+        220
+      ],
+      "id": "46a5ee1c-8718-440b-b428-e026ef214776",
+      "name": "Window Buffer Memory"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        900,
+        320
+      ],
+      "id": "8dc8089b-1cca-4a4a-8e8b-f7e4b8ce6c67",
+      "name": "Embeddings OpenAI1",
+      "credentials": {
+        "openAiApi": {
+          "id": "DUTWksCS3uLmTa9V",
+          "name": "OpenAi account"
         }
       }
     }
@@ -231,7 +320,13 @@
     },
     "Default Data Loader": {
       "ai_document": [
-        []
+        [
+          {
+            "node": "Pinecone Vector Store1",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
       ]
     },
     "Recursive Character Text Splitter": {
@@ -266,6 +361,50 @@
           }
         ]
       ]
+    },
+    "Google Drive1": {
+      "ai_tool": [
+        [
+          {
+            "node": "MNEMOS",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "MNEMOS",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "MNEMOS",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -276,7 +415,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "0d9c18c1-7b78-4cea-b790-885df0ab371e",
+  "versionId": "8fda1132-b538-4459-a23c-ae3132e79887",
   "triggerCount": 0,
   "tags": []
 }
