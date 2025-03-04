@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-02-20T19:18:29.181Z",
-  "updatedAt": "2025-03-04T06:17:03.000Z",
+  "updatedAt": "2025-03-04T20:35:44.000Z",
   "id": "MZgv9AjDQQ0aLi1E",
   "name": "JARED",
   "active": true,
@@ -688,91 +688,6 @@
     },
     {
       "parameters": {
-        "name": "NISTSolution",
-        "description": "Appelle cet outil pour toutes les questions relatives aux fichiers .nist ou format NIST"
-      },
-      "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
-      "typeVersion": 1,
-      "position": [
-        4720,
-        800
-      ],
-      "id": "566b2162-4f1a-4eb1-a8a2-4dd678dc2a08",
-      "name": "Answer questions with a vector store"
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "gpt-4o",
-          "mode": "list",
-          "cachedResultName": "gpt-4o"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        4960,
-        940
-      ],
-      "id": "c385c589-d4a0-42d2-8c5c-db4181ff92c1",
-      "name": "OpenAI Chat Model1",
-      "credentials": {
-        "openAiApi": {
-          "id": "DUTWksCS3uLmTa9V",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "pineconeIndex": {
-          "__rl": true,
-          "value": "jared",
-          "mode": "list",
-          "cachedResultName": "jared"
-        },
-        "options": {
-          "pineconeNamespace": "NIST Solutions"
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
-      "typeVersion": 1,
-      "position": [
-        4640,
-        960
-      ],
-      "id": "6c113f3a-6867-43b6-8016-9b5724ef8b4b",
-      "name": "Pinecone Vector Store",
-      "credentials": {
-        "pineconeApi": {
-          "id": "qeIz9DAd1d4jW2wv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        4740,
-        1180
-      ],
-      "id": "13ca9636-e0b5-4d1c-947f-6a7a6ea4017b",
-      "name": "Embeddings OpenAI",
-      "credentials": {
-        "openAiApi": {
-          "id": "DUTWksCS3uLmTa9V",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "name": "MNEMOS",
         "description": "MNEMOS est un agent IA qui contient et administre ta mémoire.\nConsulte le à chaque sollicitation pour obtenir des informations complémentaires. \nRends lui compte de tous ce qui peut améliorer l'expérience utilisateur et tes tâches futures.",
         "workflowId": {
@@ -1072,44 +987,6 @@
         ]
       ]
     },
-    "Answer questions with a vector store": {
-      "ai_tool": [
-        []
-      ]
-    },
-    "OpenAI Chat Model1": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Answer questions with a vector store",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Pinecone Vector Store": {
-      "ai_vectorStore": [
-        [
-          {
-            "node": "Answer questions with a vector store",
-            "type": "ai_vectorStore",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Embeddings OpenAI": {
-      "ai_embedding": [
-        [
-          {
-            "node": "Pinecone Vector Store",
-            "type": "ai_embedding",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "MNEMOS": {
       "ai_tool": [
         [
@@ -1130,7 +1007,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "c37f296e-040d-44a8-8fb2-af4a7e38de2d",
+  "versionId": "cb0a6f0f-1c8a-4c29-a7a4-762ffb97e504",
   "triggerCount": 2,
   "tags": []
 }
