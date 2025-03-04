@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-02-28T19:33:30.761Z",
-  "updatedAt": "2025-02-28T20:06:53.000Z",
+  "updatedAt": "2025-03-04T06:00:04.000Z",
   "id": "V4r7NBTt2NPzyUNR",
   "name": "MNEMOS",
   "active": false,
@@ -33,16 +33,250 @@
       "id": "7ffab3ed-b0e4-4dbd-aa66-ce83d09a0cfb",
       "name": "Webhook",
       "webhookId": "9c5ba34b-4338-47c9-b2e3-868a0f96fcab"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Tu es MNEMOS un agent IA chargé de traiter la mémoire des interactions de JARED une IA orchestratrice. Tu as à ta disposition des outils comme Pinecone et Google Drive",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        220,
+        0
+      ],
+      "id": "d7a7540e-e61a-48cd-b00a-ae0caa30c35a",
+      "name": "MNEMOS"
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "mnemos",
+          "mode": "list",
+          "cachedResultName": "mnemos"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        580,
+        0
+      ],
+      "id": "ada49837-4dd2-46f4-9543-657c5df6c708",
+      "name": "Pinecone Vector Store",
+      "credentials": {
+        "pineconeApi": {
+          "id": "qeIz9DAd1d4jW2wv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -20,
+        420
+      ],
+      "id": "9a544af1-ba86-404c-93a9-261f1f78d5a8",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "1p54txc77ctjLsNxACb8U27MbcAIHPu40GrslQFVr9oM",
+          "mode": "list",
+          "cachedResultName": "memory-1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1p54txc77ctjLsNxACb8U27MbcAIHPu40GrslQFVr9oM/edit?usp=drivesdk"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        220,
+        420
+      ],
+      "id": "d22a9d0f-525c-4696-b069-c57ea21160ef",
+      "name": "Google Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "sgH2LdpLh4s3cCci",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        660,
+        640
+      ],
+      "id": "563013e0-91c5-4767-bcf9-9e025c9e6aee",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        660,
+        780
+      ],
+      "id": "cde074e9-38e7-4883-a21e-f4d984b7d2a9",
+      "name": "Recursive Character Text Splitter"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        420,
+        620
+      ],
+      "id": "94ef96f2-c8b1-46a1-8a73-5273fe1a3d32",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "DUTWksCS3uLmTa9V",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "update",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "mnemos",
+          "mode": "list",
+          "cachedResultName": "mnemos"
+        },
+        "id": "memory-1"
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        460,
+        420
+      ],
+      "id": "4cebbceb-fb54-4306-9589-7ce0009289b4",
+      "name": "Pinecone Vector Store1",
+      "credentials": {
+        "pineconeApi": {
+          "id": "qeIz9DAd1d4jW2wv",
+          "name": "PineconeApi account"
+        }
+      }
     }
   ],
-  "connections": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "MNEMOS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store": {
+      "ai_tool": [
+        [
+          {
+            "node": "MNEMOS",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Pinecone Vector Store1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        []
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
   "settings": {
     "executionOrder": "v1"
   },
   "staticData": null,
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "pinData": {},
-  "versionId": "32ec5a3f-4c99-4ddd-b0da-88a2740bae98",
+  "versionId": "0d9c18c1-7b78-4cea-b790-885df0ab371e",
   "triggerCount": 0,
   "tags": []
 }
