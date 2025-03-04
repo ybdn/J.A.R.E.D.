@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-02-20T19:18:29.181Z",
-  "updatedAt": "2025-03-04T20:35:44.000Z",
+  "updatedAt": "2025-03-04T20:36:30.000Z",
   "id": "MZgv9AjDQQ0aLi1E",
   "name": "JARED",
   "active": true,
@@ -689,7 +689,7 @@
     {
       "parameters": {
         "name": "MNEMOS",
-        "description": "MNEMOS est un agent IA qui contient et administre ta mémoire.\nConsulte le à chaque sollicitation pour obtenir des informations complémentaires. \nRends lui compte de tous ce qui peut améliorer l'expérience utilisateur et tes tâches futures.",
+        "description": "MNEMOS est un agent IA qui contient et administre ta mémoire.\nConsulte le, tout le temps à chaque sollicitation pour obtenir des informations complémentaires. \nRends lui compte de tous ce qui peut améliorer l'expérience utilisateur et tes tâches futures.",
         "workflowId": {
           "__rl": true,
           "value": "V4r7NBTt2NPzyUNR",
@@ -708,8 +708,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        4440,
-        880
+        4500,
+        460
       ],
       "id": "b3f39590-9829-41fb-90a2-a6722fb4ad7e",
       "name": "MNEMOS"
@@ -1007,7 +1007,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "cb0a6f0f-1c8a-4c29-a7a4-762ffb97e504",
+  "versionId": "22368c73-ec6c-4991-a1aa-9cec2f09e978",
   "triggerCount": 2,
   "tags": []
 }
