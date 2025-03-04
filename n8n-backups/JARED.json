@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-02-20T19:18:29.181Z",
-  "updatedAt": "2025-03-04T21:28:43.000Z",
+  "updatedAt": "2025-03-04T21:47:26.000Z",
   "id": "MZgv9AjDQQ0aLi1E",
   "name": "JARED",
   "active": true,
@@ -713,6 +713,53 @@
       ],
       "id": "b3f39590-9829-41fb-90a2-a6722fb4ad7e",
       "name": "MNEMOS"
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolName": "VectorStore",
+        "toolDescription": "Consulte ce vector store avant de répondre ou de conulter quoi que ce soit. Ta réponse est peut être ici.",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "mnemos",
+          "mode": "list",
+          "cachedResultName": "mnemos"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        4520,
+        740
+      ],
+      "id": "dcf6c8fb-f7a8-434d-91a7-3161aa80fa53",
+      "name": "Pinecone Vector Store",
+      "credentials": {
+        "pineconeApi": {
+          "id": "qeIz9DAd1d4jW2wv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        4620,
+        960
+      ],
+      "id": "70e0af58-5b14-4f78-824b-9b8a88b3a7c2",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "DUTWksCS3uLmTa9V",
+          "name": "OpenAi account"
+        }
+      }
     }
   ],
   "connections": {
@@ -1002,6 +1049,28 @@
       "main": [
         []
       ]
+    },
+    "Pinecone Vector Store": {
+      "ai_tool": [
+        [
+          {
+            "node": "J.A.R.E.D.",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -1038,7 +1107,7 @@
       }
     ]
   },
-  "versionId": "370142f0-a19a-405d-8430-db1750518459",
+  "versionId": "b46a3927-6f23-4cc7-8707-50419b8c2377",
   "triggerCount": 2,
   "tags": []
 }
