@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-02-28T19:33:30.761Z",
-  "updatedAt": "2025-03-04T20:57:38.000Z",
+  "updatedAt": "2025-03-04T21:03:52.000Z",
   "id": "V4r7NBTt2NPzyUNR",
   "name": "MNEMOS",
   "active": false,
@@ -140,12 +140,12 @@
         "toolDescription": "Mets à jour ici le document memory2 en y intégrant la requête et ta réponse.",
         "operation": "update",
         "documentURL": "https://docs.google.com/document/d/1PrXhVe_54saOn00Qr8NOPHFAodW_oYcA8rcfKut5Hjw/edit?usp=drive_link",
-        "simple": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Simplify', ``, 'boolean') }}",
+        "simple": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Simplify', `Ajoute une ligne supplémentaire à la fin du document pour y ajouter une ligne intégrant le contenu de votre échange (entrée et sortie)`, 'boolean') }}",
         "actionsUi": {
           "actionFields": [
             {
               "action": "insert",
-              "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Text', ``, 'string') }}"
+              "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Text', `Commence par la date et l'heure actuelle puis ajoute ton contenu`, 'string') }}"
             }
           ]
         }
@@ -157,7 +157,7 @@
         220
       ],
       "id": "7d9137b0-f9f8-4929-b17c-d03f72ba10f5",
-      "name": "Update1",
+      "name": "Update",
       "credentials": {
         "googleDocsOAuth2Api": {
           "id": "tqZ8xv4mafrzAWv9",
@@ -222,7 +222,7 @@
         ]
       ]
     },
-    "Update1": {
+    "Update": {
       "ai_tool": [
         [
           {
@@ -242,7 +242,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "1a3a79f4-0a33-46c5-ab2f-782b60cb77fd",
+  "versionId": "e996d8b0-99f5-4076-8613-70e2d12d7395",
   "triggerCount": 0,
   "tags": []
 }
