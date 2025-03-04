@@ -1,23 +1,10 @@
 {
-  "createdAt": "2025-02-22T11:08:10.254Z",
-  "updatedAt": "2025-03-02T22:44:07.000Z",
-  "id": "8dshi4CBtKl4Mvg4",
+  "createdAt": "2025-02-28T19:47:28.829Z",
+  "updatedAt": "2025-02-28T19:47:28.829Z",
+  "id": "IALIALgmAY9eCcby",
   "name": "SENTINEL",
   "active": false,
   "nodes": [
-    {
-      "parameters": {
-        "content": "Sentinel 🧐\tAnalyse les emails, documents, notes et extrait les points clés.\tGPT-4-turbo\tFiltre et extrait les informations importantes."
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        220,
-        -260
-      ],
-      "id": "f4ad3b29-6685-4270-ba6f-87c6d1884ea8",
-      "name": "Sticky Note"
-    },
     {
       "parameters": {
         "inputSource": "passthrough"
@@ -26,10 +13,23 @@
       "typeVersion": 1.1,
       "position": [
         0,
-        -40
+        0
       ],
-      "id": "bbbb9821-2b86-4e3a-bc53-f43051a21999",
+      "id": "3e5b88d5-114d-4bd4-a243-02f68802c5b4",
       "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "content": "Sentinel 🧐\tAnalyse les emails, documents, notes et extrait les points clés.\tGPT-4-turbo\tFiltre et extrait les informations importantes."
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        240,
+        -220
+      ],
+      "id": "cd366c2f-fe57-4f94-84b9-fa154a4f79ce",
+      "name": "Sticky Note7"
     },
     {
       "parameters": {
@@ -44,11 +44,11 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        140,
-        200
+        160,
+        240
       ],
-      "id": "a17ee142-6073-4f1f-b886-26ce17e7e995",
-      "name": "OpenAI Chat Model",
+      "id": "52c77a03-d06d-420b-a542-c5cf481e930d",
+      "name": "OpenAI Chat Model8",
       "credentials": {
         "openAiApi": {
           "id": "DUTWksCS3uLmTa9V",
@@ -65,11 +65,11 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        320,
-        200
+        340,
+        240
       ],
-      "id": "a3ed2513-ef18-4d0a-aae3-cf6f233c1d21",
-      "name": "Window Buffer Memory"
+      "id": "2387015e-3650-4b9d-834d-1b2362f3cb96",
+      "name": "Window Buffer Memory8"
     },
     {
       "parameters": {
@@ -82,26 +82,15 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
       "position": [
-        220,
-        -40
+        240,
+        0
       ],
-      "id": "cd99e454-ebd5-4bc2-adbf-e60916e27f8c",
+      "id": "d497b64d-21bd-4c15-bdfd-dbdcc0ca54ec",
       "name": "SENTINEL"
     }
   ],
   "connections": {
-    "When Executed by Another Workflow": {
-      "main": [
-        [
-          {
-            "node": "SENTINEL",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model": {
+    "OpenAI Chat Model8": {
       "ai_languageModel": [
         [
           {
@@ -112,7 +101,7 @@
         ]
       ]
     },
-    "Window Buffer Memory": {
+    "Window Buffer Memory8": {
       "ai_memory": [
         [
           {
@@ -123,9 +112,15 @@
         ]
       ]
     },
-    "SENTINEL": {
+    "When Executed by Another Workflow": {
       "main": [
-        []
+        [
+          {
+            "node": "SENTINEL",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
@@ -135,7 +130,7 @@
   "staticData": null,
   "meta": null,
   "pinData": {},
-  "versionId": "8197fd5d-8b4b-4eab-9faa-86b4b2e3dd8b",
+  "versionId": "3a218928-ba49-442c-a4ab-382304ead5c9",
   "triggerCount": 0,
   "tags": []
 }
