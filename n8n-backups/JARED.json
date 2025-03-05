@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-02-20T19:18:29.181Z",
-  "updatedAt": "2025-03-05T16:14:22.000Z",
+  "updatedAt": "2025-03-05T16:18:55.000Z",
   "id": "MZgv9AjDQQ0aLi1E",
   "name": "JARED",
   "active": true,
@@ -837,7 +837,7 @@
     {
       "parameters": {
         "sessionIdType": "customKey",
-        "sessionKey": "=",
+        "sessionKey": "={{ $('Edit Fields').item.json.sessionId }}",
         "contextWindowLength": 10
       },
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
@@ -883,7 +883,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "={{ $now }}\nJ.A.R.E.D. output : \"{{ $json.output }}\"\n",
+        "text": "={{ $json.output }}",
         "options": {
           "systemMessage": "Tu es MNEMOS_2, ton job est d'ajouter le contenu de la requete dans le document memory-2 grace à l'outil google docs que tu as à ta disposition."
         }
@@ -1274,9 +1274,9 @@
     "INPUT_Telegram": [
       {
         "json": {
-          "update_id": 949579550,
+          "update_id": 949579570,
           "message": {
-            "message_id": 399,
+            "message_id": 444,
             "from": {
               "id": 1141780707,
               "is_bot": false,
@@ -1290,14 +1290,14 @@
               "username": "mcyahvel",
               "type": "private"
             },
-            "date": 1741122271,
-            "text": "Dis à MNEMOS que je m’appelle Yoann et que j’ai 30 ans"
+            "date": 1741191385,
+            "text": "Quel âge j’ai ?"
           }
         }
       }
     ]
   },
-  "versionId": "a7ec3ccb-4a64-4968-ab7b-a808648edf94",
+  "versionId": "ca09a3b5-8a64-4e53-bf31-b87f8990260a",
   "triggerCount": 2,
   "tags": []
 }
