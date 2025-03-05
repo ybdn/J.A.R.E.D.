@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-02-20T19:18:29.181Z",
-  "updatedAt": "2025-03-05T17:59:14.000Z",
+  "updatedAt": "2025-03-05T18:05:18.000Z",
   "id": "MZgv9AjDQQ0aLi1E",
   "name": "JARED",
   "active": true,
@@ -65,7 +65,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        1700,
+        2380,
         0
       ],
       "id": "29f20016-b2dc-4777-a5b1-64f882f26614",
@@ -79,7 +79,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        2080,
+        2600,
         -120
       ],
       "id": "4d051bf4-a82d-429e-ad7b-9ac78f95e5b7",
@@ -101,7 +101,7 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
       "position": [
-        2360,
+        2760,
         -120
       ],
       "id": "35a09575-83a4-4846-9785-a8ff519df958",
@@ -161,8 +161,8 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.1,
       "position": [
-        -220,
-        -60
+        2000,
+        -120
       ],
       "id": "39a290d7-b9d1-4d88-af23-b2d8dd0242a3",
       "name": "INPUT_Telegram",
@@ -185,7 +185,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        6360,
+        5280,
         20
       ],
       "id": "7438c32b-cc39-43e1-8b36-af64c0db285e",
@@ -562,7 +562,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -220,
+        1840,
         140
       ],
       "id": "66a5fe4c-536c-4648-81c0-ae51a39499e4",
@@ -604,7 +604,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        660,
+        2200,
         0
       ],
       "id": "9ba8d900-fb95-4207-b8d4-fbc64e7d4100",
@@ -668,7 +668,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        0,
+        2020,
         140
       ],
       "id": "67c490a2-e459-4edd-a1b0-9f206c4e80b4",
@@ -678,7 +678,7 @@
       "parameters": {
         "mode": "retrieve-as-tool",
         "toolName": "MNEMOS",
-        "toolDescription": "Consulte ce vector store MNEMOS avant de répondre ou de conulter quoi que ce soit. Ta réponse est peut être ici.",
+        "toolDescription": "Consulte OBLIGATOIREMENT cet outil avant de répondre ou de conulter quoi que ce soit. Ta réponse est peut être ici.",
         "pineconeIndex": {
           "__rl": true,
           "value": "mnemos",
@@ -765,8 +765,8 @@
       "type": "n8n-nodes-base.googleDocs",
       "typeVersion": 2,
       "position": [
-        4460,
-        -160
+        4360,
+        -140
       ],
       "id": "70a35a12-0359-4219-bee1-956f2e41a9dd",
       "name": "Google Docs1",
@@ -1111,7 +1111,7 @@
       }
     ]
   },
-  "versionId": "3649fac9-1180-43f7-a4d9-aa880ee79a4d",
+  "versionId": "fc0fc16f-672f-46ca-9206-1617d2fbc59f",
   "triggerCount": 2,
   "tags": []
 }
