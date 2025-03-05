@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-02-20T19:18:29.181Z",
-  "updatedAt": "2025-03-05T16:18:55.000Z",
+  "updatedAt": "2025-03-05T16:25:08.000Z",
   "id": "MZgv9AjDQQ0aLi1E",
   "name": "JARED",
   "active": true,
@@ -326,7 +326,8 @@
         360
       ],
       "id": "ef74c9f5-e8ef-4741-824c-f1bd0f604b55",
-      "name": "HERMES"
+      "name": "HERMES",
+      "disabled": true
     },
     {
       "parameters": {
@@ -885,7 +886,7 @@
         "promptType": "define",
         "text": "={{ $json.output }}",
         "options": {
-          "systemMessage": "Tu es MNEMOS_2, ton job est d'ajouter le contenu de la requete dans le document memory-2 grace à l'outil google docs que tu as à ta disposition."
+          "systemMessage": "Tu es MNEMOS_2, ton job est d'ajouter le contenu de la réponse de JARED dans le document memory-2 grace à l'outil google docs que tu as à ta disposition."
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -896,6 +897,173 @@
       ],
       "id": "e52b5b59-825d-4053-9464-7cf9d13a9327",
       "name": "MNEMOS_2"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $fromAI('email') }}",
+        "subject": "={{ $fromAI('objet') }}",
+        "message": "={{ $fromAI('message') }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        1220,
+        1740
+      ],
+      "id": "534911c5-b45d-4dbe-bc38-f0061150a70d",
+      "name": "Send_Mails",
+      "webhookId": "86e63d93-e9e6-4a77-b1c0-c417bb66e7ff",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "E77WpgBivINzFGq4",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "Hermès ✉️\tGestion des emails Gmail.\tGPT-4-turbo (tri), GPT-4o (rédaction)\tTrie, récupère, répond aux emails.\n"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        780,
+        1200
+      ],
+      "id": "3de5f5d6-6266-49af-961b-f907f3f156d3",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        620,
+        1620
+      ],
+      "id": "26fe9fd3-e1ca-417c-b7f3-b81555549715",
+      "name": "OpenAI Chat Model3",
+      "credentials": {
+        "openAiApi": {
+          "id": "DUTWksCS3uLmTa9V",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.query }}",
+        "contextWindowLength": 3
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        820,
+        1580
+      ],
+      "id": "63cd9240-ae5c-4200-9d87-b015065dc5d9",
+      "name": "Window Buffer Memory3"
+    },
+    {
+      "parameters": {
+        "operation": "reply",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        1420,
+        1600
+      ],
+      "id": "aa782c55-53dd-4891-83dd-b72adf913d38",
+      "name": "Repondre",
+      "webhookId": "f5cb9ad5-3e93-4934-b649-4c45cd1af0cb",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "E77WpgBivINzFGq4",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "simple": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Simplify', ``, 'boolean') }}",
+        "filters": {
+          "labelIds": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Label_Names_or_IDs', ``, 'string') }}",
+          "q": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Search', ``, 'string') }}",
+          "sender": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Sender', ``, 'string') }}"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        1420,
+        1760
+      ],
+      "id": "078799c4-63b3-40a7-9e58-6714ae59e84c",
+      "name": "Consulter",
+      "webhookId": "37e6f78b-5cb3-4230-9165-83913a2400f7",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "E77WpgBivINzFGq4",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        1540,
+        1600
+      ],
+      "id": "116b9eff-9fbc-4e81-95d5-76afdf43ff60",
+      "name": "MarquerLu",
+      "webhookId": "389e12a8-fb09-44d2-a07b-190d8569ab6d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "E77WpgBivINzFGq4",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query }}",
+        "options": {
+          "systemMessage": "=Tu es HERMÈS, l’agent IA responsable de la gestion des emails Gmail.\n■ Rôles :\n- Trier, analyser et répondre aux emails Gmail.\n- Appliquer un filtrage intelligent pour identifier les emails importants.\n- Rédiger des emails en HTML et ajouter la signature obligatoire :\n\"Yoann BAUDRIN avec J.A.R.E.D.\"\n■ Optimisation :\n■ Évite d’analyser un email déjà traité.\n■ Utilise GPT-4-turbo pour l’analyse et GPT-4o pour la rédaction avancée.\nLa date d’aujourd’hui est : {{ $now }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        760,
+        1380
+      ],
+      "id": "56630c44-b292-45bc-8d04-1b1ab3cc1ddc",
+      "name": "HERMES1"
     }
   ],
   "connections": {
@@ -1261,6 +1429,72 @@
           }
         ]
       ]
+    },
+    "Send_Mails": {
+      "ai_tool": [
+        [
+          {
+            "node": "HERMES1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "HERMES1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory3": {
+      "ai_memory": [
+        [
+          {
+            "node": "HERMES1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Repondre": {
+      "ai_tool": [
+        [
+          {
+            "node": "HERMES1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Consulter": {
+      "ai_tool": [
+        [
+          {
+            "node": "HERMES1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MarquerLu": {
+      "ai_tool": [
+        [
+          {
+            "node": "HERMES1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -1274,9 +1508,9 @@
     "INPUT_Telegram": [
       {
         "json": {
-          "update_id": 949579570,
+          "update_id": 949579572,
           "message": {
-            "message_id": 444,
+            "message_id": 448,
             "from": {
               "id": 1141780707,
               "is_bot": false,
@@ -1290,14 +1524,14 @@
               "username": "mcyahvel",
               "type": "private"
             },
-            "date": 1741191385,
-            "text": "Quel âge j’ai ?"
+            "date": 1741191730,
+            "text": "Quelle est la météo de demain à Arras ?"
           }
         }
       }
     ]
   },
-  "versionId": "ca09a3b5-8a64-4e53-bf31-b87f8990260a",
+  "versionId": "87609f86-77f4-44ee-b674-6709dbfb50c3",
   "triggerCount": 2,
   "tags": []
 }
