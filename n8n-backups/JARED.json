@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-02-20T19:18:29.181Z",
-  "updatedAt": "2025-03-05T15:50:25.000Z",
+  "updatedAt": "2025-03-05T16:06:08.000Z",
   "id": "MZgv9AjDQQ0aLi1E",
   "name": "JARED",
   "active": true,
@@ -677,8 +677,8 @@
     {
       "parameters": {
         "mode": "retrieve-as-tool",
-        "toolName": "VectorStore",
-        "toolDescription": "Consulte ce vector store avant de répondre ou de conulter quoi que ce soit. Ta réponse est peut être ici.",
+        "toolName": "MNEMOS",
+        "toolDescription": "Consulte ce vector store MNEMOS avant de répondre ou de conulter quoi que ce soit. Ta réponse est peut être ici.",
         "pineconeIndex": {
           "__rl": true,
           "value": "mnemos",
@@ -736,31 +736,59 @@
     },
     {
       "parameters": {
-        "name": "MNEMOS",
-        "description": "Appelle cet outil, MNEMOS, pour actualiser ta mémoire et enregister le contenu de tes interactions avec l'utilisateur et les agents que tu as utilisé.",
-        "workflowId": {
+        "operation": "update",
+        "fileId": {
           "__rl": true,
-          "value": "V4r7NBTt2NPzyUNR",
+          "value": "1PrXhVe_54saOn00Qr8NOPHFAodW_oYcA8rcfKut5Hjw",
           "mode": "list",
-          "cachedResultName": "MNEMOS"
+          "cachedResultName": "memory-2",
+          "cachedResultUrl": "https://docs.google.com/document/d/1PrXhVe_54saOn00Qr8NOPHFAodW_oYcA8rcfKut5Hjw/edit?usp=drivesdk"
         },
-        "workflowInputs": {
-          "mappingMode": "defineBelow",
-          "value": {},
-          "matchingColumns": [],
-          "schema": [],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        }
+        "newUpdatedFileName": "memory-2",
+        "options": {}
       },
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 2,
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
       "position": [
-        4420,
-        540
+        3560,
+        -140
       ],
-      "id": "059babc7-762e-48cb-b029-ba70071d82e1",
-      "name": "MNEMOS"
+      "id": "c241e938-b40d-4585-adc1-c7fa60150f87",
+      "name": "Google Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "sgH2LdpLh4s3cCci",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "fileId": {
+          "__rl": true,
+          "value": "1PrXhVe_54saOn00Qr8NOPHFAodW_oYcA8rcfKut5Hjw",
+          "mode": "list",
+          "cachedResultName": "memory-2",
+          "cachedResultUrl": "https://docs.google.com/document/d/1PrXhVe_54saOn00Qr8NOPHFAodW_oYcA8rcfKut5Hjw/edit?usp=drivesdk"
+        },
+        "newUpdatedFileName": "memory-2",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        4680,
+        -100
+      ],
+      "id": "e5ebb1b8-24e5-409b-8ce1-59b63d6c493c",
+      "name": "Google Drive1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "sgH2LdpLh4s3cCci",
+          "name": "Google Drive account"
+        }
+      }
     }
   ],
   "connections": {
@@ -842,6 +870,11 @@
         [
           {
             "node": "OUTPUT_Telegram",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google Drive1",
             "type": "main",
             "index": 0
           }
@@ -1009,6 +1042,11 @@
             "node": "J.A.R.E.D.",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -1050,17 +1088,6 @@
           }
         ]
       ]
-    },
-    "MNEMOS": {
-      "ai_tool": [
-        [
-          {
-            "node": "J.A.R.E.D.",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
     }
   },
   "settings": {
@@ -1070,8 +1097,34 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "pinData": {},
-  "versionId": "fdb47e94-4fc0-4834-b60a-2b62451008c3",
+  "pinData": {
+    "INPUT_Telegram": [
+      {
+        "json": {
+          "update_id": 949579550,
+          "message": {
+            "message_id": 399,
+            "from": {
+              "id": 1141780707,
+              "is_bot": false,
+              "first_name": "Yø",
+              "username": "mcyahvel",
+              "language_code": "en"
+            },
+            "chat": {
+              "id": 1141780707,
+              "first_name": "Yø",
+              "username": "mcyahvel",
+              "type": "private"
+            },
+            "date": 1741122271,
+            "text": "Dis à MNEMOS que je m’appelle Yoann et que j’ai 30 ans"
+          }
+        }
+      }
+    ]
+  },
+  "versionId": "58109f83-73b0-4104-9ad2-4f1b56d18d9a",
   "triggerCount": 2,
   "tags": []
 }
