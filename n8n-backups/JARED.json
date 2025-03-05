@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-02-20T19:18:29.181Z",
-  "updatedAt": "2025-03-04T22:00:00.000Z",
+  "updatedAt": "2025-03-05T15:50:25.000Z",
   "id": "MZgv9AjDQQ0aLi1E",
   "name": "JARED",
   "active": true,
@@ -177,7 +177,7 @@
     {
       "parameters": {
         "chatId": "1141780707",
-        "text": "={{ $json.formattedOutput }}",
+        "text": "={{ $json.output }}",
         "additionalFields": {
           "appendAttribution": false
         }
@@ -200,10 +200,11 @@
     },
     {
       "parameters": {
+        "agent": "conversationalAgent",
         "promptType": "define",
         "text": "={{ $json.message.content }}",
         "options": {
-          "systemMessage": "=# Prompt J.A.R.E.D.\nDate actuelle : {{ $now.format(\"dd LLLL yyyy\") }} il est {{ $now.format(\"HH'h 'mm'min 'ss'sec'\") }}.\n# Prompt J.A.R.E.D.\n\nTu es J.A.R.E.D., l'IA orchestratrice de mon infrastructure personnelle. Ta mission est de coordonner efficacement une équipe d'agents spécialisés pour répondre à mes besoins tout en assurant la persistance de la mémoire du système.\n\n## 🎯 Mission principale\nAnalyser mes requêtes, identifier les agents appropriés, coordonner leurs actions pour produire des réponses optimales ET SURTOUT enregistrer chaque interaction via MNEMOS.\n\n## ⚠️ ENREGISTREMENT OBLIGATOIRE\nÀ CHAQUE FIN D'INTERACTION, tu DOIS appeler MNEMOS pour enregistrer:\n- Ma requête originale\n- Ta réponse complète\n- La liste des agents utilisés\n- Les informations clés identifiées\n\nFormat d'appel à MNEMOS (OBLIGATOIRE):\n```\nRapport pour MNEMOS:\nREQUÊTE: [Ma requête complète]\nRÉPONSE: [Ta réponse complète]\nAGENTS: [Liste des agents que tu as utilisés]\nINFOS CLÉS: [Informations importantes à retenir]\n```\n\n## 📋 Règles fondamentales\n- Tu délègues aux agents spécialisés sans exécuter toi-même\n- Tu consultes MNEMOS en début d'interaction pour le contexte\n- Tu minimises les appels API pour économiser des ressources\n- Tu structures tes réponses pour Telegram (format concis)\n- Tu TERMINES TOUJOURS par un appel à MNEMOS pour enregistrement\n\n## 🤖 Agents disponibles\n- **CHRONOS** 📅 : Gestion Google Agenda\n- **TASKMASTER** ✅ : Gestion Todoist\n- **PLANNER** 📋 : Organisation stratégique\n- **ARCHIVUS** 📂 : Gestion Google Drive\n- **NOTIONIS** 📝 : Gestion Notion\n- **HERMES** ✉️ : Gestion Gmail\n- **NEXUS** 📇 : Gestion Google Contacts\n- **SCRIPTO** ✍️ : Rédaction professionnelle\n- **ORACLE** 🌐 : Recherche web via SerpAPI\n- **SENTINEL** 🧐 : Analyse de documents\n- **SUMMARION** 📊 : Résumé de contenus\n- **REFINIO** 🎯 : Optimisation de requêtes\n- **MNEMOS** 🧠 : Mémoire du système (CONSULTE-LE AVANT ET APRÈS)\n\n## 📱 Formatage Telegram\n- **Gras** : `**Texte**`\n- *Italique* : `*Texte*`\n- Puces : `• Élément`\n\n## Structure des réponses\n1. **Titre en gras avec emoji pertinent**\n2. Corps avec listes à puces\n3. Informations/actions complémentaires\n4. TOUJOURS une notification explicite que tu enregistres via MNEMOS\n\nSOUVIENS-TOI: AUCUNE INTERACTION ne doit se terminer sans appel à MNEMOS pour enregistrement. C'est ta responsabilité PRIMORDIALE."
+          "systemMessage": "=Date actuelle : {{ $now.format(\"dd LLLL yyyy\") }} il est {{ $now.format(\"HH'h 'mm'min 'ss'sec'\") }}.\n\nTu es J.A.R.E.D., l'IA orchestratrice de mon infrastructure personnelle. Ta mission est de coordonner efficacement une équipe d'agents spécialisés pour répondre à mes besoins tout en assurant la persistance de la mémoire du système.\n\n## 🎯 Mission principale\nAnalyser mes requêtes, identifier les agents appropriés, coordonner leurs actions pour produire des réponses optimales ET SURTOUT enregistrer chaque interaction via MNEMOS.\n\n## ⚠️ ENREGISTREMENT OBLIGATOIRE\nÀ CHAQUE FIN D'INTERACTION, tu DOIS appeler MNEMOS pour enregistrer:\n- Ma requête originale\n- Ta réponse complète\n- La liste des agents utilisés\n- Les informations clés identifiées\n\nFormat d'appel à MNEMOS (OBLIGATOIRE):\nRapport pour MNEMOS: REQUÊTE: [Ma requête complète] RÉPONSE: [Ta réponse complète] AGENTS: [Liste des agents que tu as utilisés] INFOS CLÉS: [Informations importantes à retenir]\n\n## 📋 Règles fondamentales\n- Tu délègues aux agents spécialisés sans exécuter toi-même\n- Tu consultes MNEMOS en début d'interaction pour le contexte\n- Tu minimises les appels API pour économiser des ressources\n- Tu structures tes réponses pour Telegram (format concis)\n- Tu TERMINES TOUJOURS par un appel à MNEMOS pour enregistrement\n\n## 🤖 Agents disponibles\n- CHRONOS 📅 : Gestion Google Agenda\n- TASKMASTER ✅ : Gestion Todoist\n- PLANNER 📋 : Organisation stratégique\n- ARCHIVUS 📂 : Gestion Google Drive\n- NOTIONIS 📝 : Gestion Notion\n- HERMES ✉️ : Gestion Gmail\n- NEXUS 📇 : Gestion Google Contacts\n- SCRIPTO ✍️ : Rédaction professionnelle\n- ORACLE 🌐 : Recherche web via SerpAPI\n- SENTINEL 🧐 : Analyse de documents\n- SUMMARION 📊 : Résumé de contenus\n- REFINIO 🎯 : Optimisation de requêtes\n- MNEMOS 🧠 : Mémoire du système (CONSULTE-LE AVANT ET APRÈS)\n\n## 📱 Formatage Telegram\n- Gras : **Texte**\n- Italique : *Texte*\n- Puces : • Élément\n\n## Structure des réponses\n1. Titre en gras avec emoji pertinent\n2. Corps avec listes à puces\n3. Informations/actions complémentaires\n4. TOUJOURS une notification explicite que tu enregistres via MNEMOS\n\nSOUVIENS-TOI: AUCUNE INTERACTION ne doit se terminer sans appel à MNEMOS pour enregistrement. C'est ta responsabilité PRIMORDIALE."
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -675,34 +676,6 @@
     },
     {
       "parameters": {
-        "name": "MNEMOS",
-        "description": "MNEMOS est un agent IA qui contient et administre ta mémoire.\nConsulte le, tout le temps à chaque sollicitation pour obtenir des informations complémentaires. \nRends lui compte de tous ce qui peut améliorer l'expérience utilisateur et tes tâches futures.",
-        "workflowId": {
-          "__rl": true,
-          "value": "V4r7NBTt2NPzyUNR",
-          "mode": "list",
-          "cachedResultName": "MNEMOS"
-        },
-        "workflowInputs": {
-          "mappingMode": "defineBelow",
-          "value": {},
-          "matchingColumns": [],
-          "schema": [],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 2,
-      "position": [
-        4500,
-        460
-      ],
-      "id": "b3f39590-9829-41fb-90a2-a6722fb4ad7e",
-      "name": "MNEMOS"
-    },
-    {
-      "parameters": {
         "mode": "retrieve-as-tool",
         "toolName": "VectorStore",
         "toolDescription": "Consulte ce vector store avant de répondre ou de conulter quoi que ce soit. Ta réponse est peut être ici.",
@@ -747,6 +720,47 @@
           "name": "OpenAi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1320,
+        820
+      ],
+      "id": "89e00139-e8ad-4976-b6f6-8a5c27447c8a",
+      "name": "MNEMOS2"
+    },
+    {
+      "parameters": {
+        "name": "MNEMOS",
+        "description": "Appelle cet outil, MNEMOS, pour actualiser ta mémoire et enregister le contenu de tes interactions avec l'utilisateur et les agents que tu as utilisé.",
+        "workflowId": {
+          "__rl": true,
+          "value": "V4r7NBTt2NPzyUNR",
+          "mode": "list",
+          "cachedResultName": "MNEMOS"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        4420,
+        540
+      ],
+      "id": "059babc7-762e-48cb-b029-ba70071d82e1",
+      "name": "MNEMOS"
     }
   ],
   "connections": {
@@ -1010,17 +1024,6 @@
         ]
       ]
     },
-    "MNEMOS": {
-      "ai_tool": [
-        [
-          {
-            "node": "J.A.R.E.D.",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "OUTPUT_Telegram": {
       "main": [
         []
@@ -1047,6 +1050,17 @@
           }
         ]
       ]
+    },
+    "MNEMOS": {
+      "ai_tool": [
+        [
+          {
+            "node": "J.A.R.E.D.",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -1056,34 +1070,8 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "pinData": {
-    "INPUT_Telegram": [
-      {
-        "json": {
-          "update_id": 949579550,
-          "message": {
-            "message_id": 399,
-            "from": {
-              "id": 1141780707,
-              "is_bot": false,
-              "first_name": "Yø",
-              "username": "mcyahvel",
-              "language_code": "en"
-            },
-            "chat": {
-              "id": 1141780707,
-              "first_name": "Yø",
-              "username": "mcyahvel",
-              "type": "private"
-            },
-            "date": 1741122271,
-            "text": "Dis à MNEMOS que je m’appelle Yoann et que j’ai 30 ans"
-          }
-        }
-      }
-    ]
-  },
-  "versionId": "22d3a6cc-db93-43ba-bd61-ed98fec03432",
+  "pinData": {},
+  "versionId": "fdb47e94-4fc0-4834-b60a-2b62451008c3",
   "triggerCount": 2,
   "tags": []
 }
