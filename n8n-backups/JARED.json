@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-02-20T19:18:29.181Z",
-  "updatedAt": "2025-03-05T17:55:02.000Z",
+  "updatedAt": "2025-03-05T17:59:14.000Z",
   "id": "MZgv9AjDQQ0aLi1E",
   "name": "JARED",
   "active": true,
@@ -757,7 +757,7 @@
           "actionFields": [
             {
               "action": "insert",
-              "text": "=----\nDate : {{ $now.format(\"dd MMM'.' yyyy 'à' HH'h' mm'min.' ss'sec.'\")}} //\nRequête :{{ $json.message.content }} //\n----"
+              "text": "=----\nDate : {{ $now.format(\"dd MMM'.' yyyy 'à' HH'h' mm'min.' ss'sec.'\")}} //\nRéponse de J.A.R.E.D :{{ $json.output }} //\n----"
             }
           ]
         }
@@ -1084,8 +1084,34 @@
   "meta": {
     "templateCredsSetupCompleted": true
   },
-  "pinData": {},
-  "versionId": "1e504e36-b226-4c36-ac03-5757f7695be6",
+  "pinData": {
+    "INPUT_Telegram": [
+      {
+        "json": {
+          "update_id": 949579575,
+          "message": {
+            "message_id": 455,
+            "from": {
+              "id": 1141780707,
+              "is_bot": false,
+              "first_name": "Yø",
+              "username": "mcyahvel",
+              "language_code": "en"
+            },
+            "chat": {
+              "id": 1141780707,
+              "first_name": "Yø",
+              "username": "mcyahvel",
+              "type": "private"
+            },
+            "date": 1741197395,
+            "text": "La météo pour Paris, France, demain, le 6 mars 2025, est la suivante :\n\n- Condition: Ensoleillé\n- Température: 16°C\n- Précipitations: 0%\n- Humidité: 57%\n- Vent: 13 km/h\n\nCe sera une journée agréable !"
+          }
+        }
+      }
+    ]
+  },
+  "versionId": "3649fac9-1180-43f7-a4d9-aa880ee79a4d",
   "triggerCount": 2,
   "tags": []
 }
