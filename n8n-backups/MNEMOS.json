@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-02-28T19:33:30.761Z",
-  "updatedAt": "2025-03-04T21:59:55.000Z",
+  "updatedAt": "2025-03-05T16:06:40.000Z",
   "id": "V4r7NBTt2NPzyUNR",
   "name": "MNEMOS",
   "active": false,
@@ -29,8 +29,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
       "position": [
-        220,
-        0
+        400,
+        -360
       ],
       "id": "d7a7540e-e61a-48cd-b00a-ae0caa30c35a",
       "name": "MNEMOS"
@@ -52,8 +52,8 @@
       "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
       "typeVersion": 1,
       "position": [
-        760,
-        200
+        780,
+        -200
       ],
       "id": "ada49837-4dd2-46f4-9543-657c5df6c708",
       "name": "Pinecone Vector Store",
@@ -77,8 +77,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        100,
-        180
+        360,
+        -160
       ],
       "id": "4e724bfb-a1d8-4703-a361-879475aed523",
       "name": "OpenAI Chat Model",
@@ -98,8 +98,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        320,
-        220
+        480,
+        -140
       ],
       "id": "46a5ee1c-8718-440b-b428-e026ef214776",
       "name": "Window Buffer Memory"
@@ -111,8 +111,8 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "typeVersion": 1.2,
       "position": [
-        760,
-        340
+        780,
+        -20
       ],
       "id": "8dc8089b-1cca-4a4a-8e8b-f7e4b8ce6c67",
       "name": "Embeddings OpenAI1",
@@ -155,8 +155,8 @@
       "type": "n8n-nodes-base.googleDocsTool",
       "typeVersion": 2,
       "position": [
-        540,
-        220
+        620,
+        -40
       ],
       "id": "7d9137b0-f9f8-4929-b17c-d03f72ba10f5",
       "name": "Update",
@@ -263,7 +263,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "6c49d9c8-6134-4ad6-ad5d-8c39ad3ca632",
+  "versionId": "039e67ff-4126-4ddc-9413-f5f8bb5a7e83",
   "triggerCount": 0,
   "tags": []
 }
