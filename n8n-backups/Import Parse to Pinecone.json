@@ -1,1 +1,228 @@
-
+{
+  "createdAt": "2025-03-03T23:33:16.947Z",
+  "updatedAt": "2025-03-04T18:32:47.000Z",
+  "id": "b2gbCy5x9S8Hv2Hc",
+  "name": "Import Parse to Pinecone",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f9e08348-bf32-41a2-8c83-d4f8b471fafc",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "1ChH2T7pp-51ZkDs_fD0LnIjYutoeQSqi",
+          "mode": "list",
+          "cachedResultName": "OPJ 2026 - PP v1.pdf",
+          "cachedResultUrl": "https://drive.google.com/file/d/1ChH2T7pp-51ZkDs_fD0LnIjYutoeQSqi/view?usp=drivesdk"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        220,
+        0
+      ],
+      "id": "bc559f79-8a51-406f-9145-523ae6d75ab9",
+      "name": "Google Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "sgH2LdpLh4s3cCci",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "opj",
+          "mode": "list",
+          "cachedResultName": "opj"
+        },
+        "options": {
+          "pineconeNamespace": "pp-v1"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        440,
+        0
+      ],
+      "id": "0394cbb3-4171-4db7-ad1f-6ce2143b2dba",
+      "name": "Pinecone Vector Store",
+      "credentials": {
+        "pineconeApi": {
+          "id": "qeIz9DAd1d4jW2wv",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        640,
+        220
+      ],
+      "id": "924e6573-2e7c-4f2b-982c-90d7e80dcdf2",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        640,
+        360
+      ],
+      "id": "15149add-a748-4f83-b955-37ed5d9d46a5",
+      "name": "Recursive Character Text Splitter"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        500,
+        220
+      ],
+      "id": "c45394e7-d9b0-4688-8f87-06292fd525fb",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "DUTWksCS3uLmTa9V",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "repository",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "n8n-io",
+          "mode": "list",
+          "cachedResultName": "n8n-io",
+          "cachedResultUrl": "https://github.com/n8n-io"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "n8n-docs",
+          "mode": "list",
+          "cachedResultName": "n8n-docs",
+          "cachedResultUrl": "https://github.com/n8n-io/n8n-docs"
+        }
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        220,
+        500
+      ],
+      "id": "fe8ca268-73b5-4278-a4af-fe3e0d74d7dd",
+      "name": "GitHub",
+      "credentials": {
+        "githubApi": {
+          "id": "T4dFe4hUpzunHUiJ",
+          "name": "GitHub account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "19954c50-5adb-4a46-ba4d-358de0d0cc24",
+  "triggerCount": 0,
+  "tags": []
+}
