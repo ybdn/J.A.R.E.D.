@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-02-20T19:18:29.181Z",
-  "updatedAt": "2025-03-05T18:05:18.000Z",
+  "updatedAt": "2025-03-05T18:06:52.000Z",
   "id": "MZgv9AjDQQ0aLi1E",
   "name": "JARED",
   "active": true,
@@ -65,7 +65,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        2380,
+        2900,
         0
       ],
       "id": "29f20016-b2dc-4777-a5b1-64f882f26614",
@@ -79,7 +79,7 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        2600,
+        3120,
         -120
       ],
       "id": "4d051bf4-a82d-429e-ad7b-9ac78f95e5b7",
@@ -101,7 +101,7 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
       "position": [
-        2760,
+        3280,
         -120
       ],
       "id": "35a09575-83a4-4846-9785-a8ff519df958",
@@ -126,8 +126,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        3740,
-        240
+        3540,
+        580
       ],
       "id": "3f020abb-ef16-4187-80f8-933cc6f380b8",
       "name": "OpenAI Chat Model",
@@ -145,8 +145,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        3980,
-        280
+        3700,
+        580
       ],
       "id": "a4e84de4-7f92-4dd8-9d62-aa47ce319b5f",
       "name": "Window Buffer Memory"
@@ -161,7 +161,7 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.1,
       "position": [
-        2000,
+        2520,
         -120
       ],
       "id": "39a290d7-b9d1-4d88-af23-b2d8dd0242a3",
@@ -238,8 +238,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        4780,
-        200
+        4040,
+        1400
       ],
       "id": "d2709649-685b-4c5c-b159-62abce622343",
       "name": "CHRONOS"
@@ -266,8 +266,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        4940,
-        200
+        4200,
+        1400
       ],
       "id": "fd56e558-cf2f-46b5-b3da-b3fafa86d9a1",
       "name": "ARCHIVUS"
@@ -294,8 +294,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        4780,
-        360
+        4040,
+        1560
       ],
       "id": "7952f5dc-f237-47b5-9154-60706cf79277",
       "name": "NEXUS"
@@ -322,8 +322,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        4940,
-        360
+        4200,
+        1560
       ],
       "id": "ef74c9f5-e8ef-4741-824c-f1bd0f604b55",
       "name": "HERMES"
@@ -350,8 +350,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        4780,
-        520
+        4040,
+        1720
       ],
       "id": "26051457-8b43-4e36-82ab-d7c5286d5de7",
       "name": "TASKMASTER"
@@ -378,8 +378,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        4940,
-        520
+        4200,
+        1720
       ],
       "id": "4bcaddc9-ec8d-41b9-9ed0-c9b0900cc005",
       "name": "NOTIONIS"
@@ -406,8 +406,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        4060,
-        800
+        3680,
+        1060
       ],
       "id": "62df0212-c2c5-4555-8aad-f8cb3123eda7",
       "name": "SENTINEL"
@@ -434,8 +434,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        4180,
-        800
+        3800,
+        1060
       ],
       "id": "fdc6be70-da2d-46c2-8600-aae83395042d",
       "name": "SUMMARION"
@@ -462,8 +462,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        4060,
-        980
+        3680,
+        1240
       ],
       "id": "e971172b-145d-4fa8-928b-bb0e358e4efe",
       "name": "SCRIPTO"
@@ -490,8 +490,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        4180,
-        980
+        3800,
+        1240
       ],
       "id": "e13a221b-2d21-4a37-b3b5-395765ecf4de",
       "name": "PLANNER"
@@ -518,8 +518,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        4300,
-        980
+        3920,
+        1240
       ],
       "id": "3e423fb0-6a13-4cf2-87c6-82f9105178b7",
       "name": "REFINIO"
@@ -546,8 +546,8 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        4300,
-        800
+        3920,
+        1060
       ],
       "id": "180517e2-ebe8-4480-96b0-aa0a84af09ca",
       "name": "ORACLE"
@@ -562,7 +562,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        1840,
+        2360,
         140
       ],
       "id": "66a5fe4c-536c-4648-81c0-ae51a39499e4",
@@ -604,7 +604,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2200,
+        2720,
         0
       ],
       "id": "9ba8d900-fb95-4207-b8d4-fbc64e7d4100",
@@ -645,7 +645,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        3000,
+        3520,
         20
       ],
       "id": "c11af687-6f71-49d7-aee0-6791ee2e2b32",
@@ -668,7 +668,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2020,
+        2540,
         140
       ],
       "id": "67c490a2-e459-4edd-a1b0-9f206c4e80b4",
@@ -690,8 +690,8 @@
       "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
       "typeVersion": 1,
       "position": [
-        4560,
-        740
+        4500,
+        340
       ],
       "id": "dcf6c8fb-f7a8-434d-91a7-3161aa80fa53",
       "name": "Pinecone Vector Store",
@@ -709,8 +709,8 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "typeVersion": 1.2,
       "position": [
-        4620,
-        960
+        4480,
+        520
       ],
       "id": "70e0af58-5b14-4f78-824b-9b8a88b3a7c2",
       "name": "Embeddings OpenAI",
@@ -737,7 +737,7 @@
       "type": "n8n-nodes-base.googleDocs",
       "typeVersion": 2,
       "position": [
-        3180,
+        3700,
         -140
       ],
       "id": "d1928730-a66d-4e61-9f7e-cddaf0b7b622",
@@ -1111,7 +1111,7 @@
       }
     ]
   },
-  "versionId": "fc0fc16f-672f-46ca-9206-1617d2fbc59f",
+  "versionId": "fa4b29ff-2a1d-496b-b024-7efecb9426c6",
   "triggerCount": 2,
   "tags": []
 }
