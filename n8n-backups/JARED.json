@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-02-20T19:18:29.181Z",
-  "updatedAt": "2025-03-05T18:35:19.000Z",
+  "updatedAt": "2025-03-13T14:00:15.000Z",
   "id": "MZgv9AjDQQ0aLi1E",
   "name": "JARED",
   "active": true,
@@ -126,8 +126,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        3540,
-        580
+        3800,
+        200
       ],
       "id": "3f020abb-ef16-4187-80f8-933cc6f380b8",
       "name": "OpenAI Chat Model",
@@ -145,8 +145,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        3700,
-        580
+        3940,
+        200
       ],
       "id": "a4e84de4-7f92-4dd8-9d62-aa47ce319b5f",
       "name": "Window Buffer Memory"
@@ -161,7 +161,7 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.1,
       "position": [
-        2520,
+        2360,
         -120
       ],
       "id": "39a290d7-b9d1-4d88-af23-b2d8dd0242a3",
@@ -214,342 +214,6 @@
       ],
       "id": "23f531da-718d-43a2-9574-e7c39e12ffc2",
       "name": "J.A.R.E.D."
-    },
-    {
-      "parameters": {
-        "name": "CHRONOS",
-        "description": "Appelle le workflow CHRONOS pour interagir avec Google Agenda. Vérifie la disponibilité avant de créer un événement et applique la couleur appropriée.",
-        "workflowId": {
-          "__rl": true,
-          "value": "zFxfSRcCJo7vDed4",
-          "mode": "list",
-          "cachedResultName": "CHRONOS"
-        },
-        "workflowInputs": {
-          "mappingMode": "defineBelow",
-          "value": {},
-          "matchingColumns": [],
-          "schema": [],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 2,
-      "position": [
-        4040,
-        1400
-      ],
-      "id": "d2709649-685b-4c5c-b159-62abce622343",
-      "name": "CHRONOS"
-    },
-    {
-      "parameters": {
-        "name": "ARCHIVUS",
-        "description": "Appelle le workflow ARCHIVUS pour rechercher et organiser des fichiers. Priorise les fichiers récemment utilisés avant d'effectuer une recherche globale.",
-        "workflowId": {
-          "__rl": true,
-          "value": "m2k9MVNT4uCijF2U",
-          "mode": "list",
-          "cachedResultName": "Archivus 📂"
-        },
-        "workflowInputs": {
-          "mappingMode": "defineBelow",
-          "value": {},
-          "matchingColumns": [],
-          "schema": [],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 2,
-      "position": [
-        4200,
-        1400
-      ],
-      "id": "fd56e558-cf2f-46b5-b3da-b3fafa86d9a1",
-      "name": "ARCHIVUS"
-    },
-    {
-      "parameters": {
-        "name": "NEXUS",
-        "description": "Appelle le workflow NEXUS pour interagir avec Google Contacts. Vérifie les contacts existants avant toute modification ou ajout.",
-        "workflowId": {
-          "__rl": true,
-          "value": "ZQYix75iAaAER8pm",
-          "mode": "list",
-          "cachedResultName": "Nexus 📇"
-        },
-        "workflowInputs": {
-          "mappingMode": "defineBelow",
-          "value": {},
-          "matchingColumns": [],
-          "schema": [],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 2,
-      "position": [
-        4040,
-        1560
-      ],
-      "id": "7952f5dc-f237-47b5-9154-60706cf79277",
-      "name": "NEXUS"
-    },
-    {
-      "parameters": {
-        "name": "HERMES",
-        "description": "Appelle le workflow HERMÈS pour récupérer et traiter les emails Gmail. Trie les emails en fonction de leur priorité avant de les analyser.",
-        "workflowId": {
-          "__rl": true,
-          "value": "vTCjUeqEhEPrWkZI",
-          "mode": "list",
-          "cachedResultName": "HERMES"
-        },
-        "workflowInputs": {
-          "mappingMode": "defineBelow",
-          "value": {},
-          "matchingColumns": [],
-          "schema": [],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 2,
-      "position": [
-        4200,
-        1560
-      ],
-      "id": "ef74c9f5-e8ef-4741-824c-f1bd0f604b55",
-      "name": "HERMES"
-    },
-    {
-      "parameters": {
-        "name": "TASKMASTER",
-        "description": "Appelle le workflow TASKMASTER pour gérer les tâches Google Tasks. Vérifie les tâches en cours avant de générer une nouvelle entrée.",
-        "workflowId": {
-          "__rl": true,
-          "value": "WysyXwKll6hIBXYW",
-          "mode": "list",
-          "cachedResultName": "TASKMASTER"
-        },
-        "workflowInputs": {
-          "mappingMode": "defineBelow",
-          "value": {},
-          "matchingColumns": [],
-          "schema": [],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 2,
-      "position": [
-        4040,
-        1720
-      ],
-      "id": "26051457-8b43-4e36-82ab-d7c5286d5de7",
-      "name": "TASKMASTER"
-    },
-    {
-      "parameters": {
-        "name": "NOTIONIS",
-        "description": "Appelle le workflow NOTIONIS pour organiser et structurer les notes Google Keep. Vérifie les notes existantes avant toute création.",
-        "workflowId": {
-          "__rl": true,
-          "value": "hcf2F6ZAEwbYn9VD",
-          "mode": "list",
-          "cachedResultName": "NOTIONIS"
-        },
-        "workflowInputs": {
-          "mappingMode": "defineBelow",
-          "value": {},
-          "matchingColumns": [],
-          "schema": [],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 2,
-      "position": [
-        4200,
-        1720
-      ],
-      "id": "4bcaddc9-ec8d-41b9-9ed0-c9b0900cc005",
-      "name": "NOTIONIS"
-    },
-    {
-      "parameters": {
-        "name": "SENTINEL",
-        "description": "Appelle le workflow SENTINEL pour analyser un document et extraire les informations importantes.",
-        "workflowId": {
-          "__rl": true,
-          "value": "IALIALgmAY9eCcby",
-          "mode": "list",
-          "cachedResultName": "SENTINEL"
-        },
-        "workflowInputs": {
-          "mappingMode": "defineBelow",
-          "value": {},
-          "matchingColumns": [],
-          "schema": [],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 2,
-      "position": [
-        3680,
-        1060
-      ],
-      "id": "62df0212-c2c5-4555-8aad-f8cb3123eda7",
-      "name": "SENTINEL"
-    },
-    {
-      "parameters": {
-        "name": "SUMMARION",
-        "description": "Appelle le workflow SUMMARION pour générer un résumé optimisé d’un document volumineux.",
-        "workflowId": {
-          "__rl": true,
-          "value": "FVW4zvvOdP10C4KM",
-          "mode": "list",
-          "cachedResultName": "Summarion 📝"
-        },
-        "workflowInputs": {
-          "mappingMode": "defineBelow",
-          "value": {},
-          "matchingColumns": [],
-          "schema": [],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 2,
-      "position": [
-        3800,
-        1060
-      ],
-      "id": "fdc6be70-da2d-46c2-8600-aae83395042d",
-      "name": "SUMMARION"
-    },
-    {
-      "parameters": {
-        "name": "SCRIPTO",
-        "description": "Appelle le workflow SCRIPTO pour générer une réponse rédigée avec précision et clarté.",
-        "workflowId": {
-          "__rl": true,
-          "value": "q2L5Bdkap3RrdWoN",
-          "mode": "list",
-          "cachedResultName": "Scripto ✍️"
-        },
-        "workflowInputs": {
-          "mappingMode": "defineBelow",
-          "value": {},
-          "matchingColumns": [],
-          "schema": [],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 2,
-      "position": [
-        3680,
-        1240
-      ],
-      "id": "e971172b-145d-4fa8-928b-bb0e358e4efe",
-      "name": "SCRIPTO"
-    },
-    {
-      "parameters": {
-        "name": "PLANNER",
-        "description": "Appelle le workflow PLANNER pour organiser et prioriser les tâches et événements en fonction de leur importance.",
-        "workflowId": {
-          "__rl": true,
-          "value": "eUJXbrsDodYAblws",
-          "mode": "list",
-          "cachedResultName": "PLANNER"
-        },
-        "workflowInputs": {
-          "mappingMode": "defineBelow",
-          "value": {},
-          "matchingColumns": [],
-          "schema": [],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 2,
-      "position": [
-        3800,
-        1240
-      ],
-      "id": "e13a221b-2d21-4a37-b3b5-395765ecf4de",
-      "name": "PLANNER"
-    },
-    {
-      "parameters": {
-        "name": "REFINIO",
-        "description": "Appelle le workflow REFINIO pour reformuler et optimiser une requête avant exécution afin de limiter la consommation de tokens.",
-        "workflowId": {
-          "__rl": true,
-          "value": "5yBNIsMPTwhuN7KL",
-          "mode": "list",
-          "cachedResultName": "REFINIO"
-        },
-        "workflowInputs": {
-          "mappingMode": "defineBelow",
-          "value": {},
-          "matchingColumns": [],
-          "schema": [],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 2,
-      "position": [
-        3920,
-        1240
-      ],
-      "id": "3e423fb0-6a13-4cf2-87c6-82f9105178b7",
-      "name": "REFINIO"
-    },
-    {
-      "parameters": {
-        "name": "ORACLE",
-        "description": "Appelle le workflow ORACLE pour récupérer et structurer les résultats d’une recherche web.",
-        "workflowId": {
-          "__rl": true,
-          "value": "wcZvZFPdav4rDoqD",
-          "mode": "list",
-          "cachedResultName": "ORACLE"
-        },
-        "workflowInputs": {
-          "mappingMode": "defineBelow",
-          "value": {},
-          "matchingColumns": [],
-          "schema": [],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "typeVersion": 2,
-      "position": [
-        3920,
-        1060
-      ],
-      "id": "180517e2-ebe8-4480-96b0-aa0a84af09ca",
-      "name": "ORACLE"
     },
     {
       "parameters": {
@@ -672,129 +336,6 @@
       ],
       "id": "67c490a2-e459-4edd-a1b0-9f206c4e80b4",
       "name": "Edit Fields1"
-    },
-    {
-      "parameters": {
-        "mode": "retrieve-as-tool",
-        "toolName": "MNEMOS",
-        "toolDescription": "Consulte OBLIGATOIREMENT cet outil avant de répondre ou de conulter quoi que ce soit. C'est ta mémoire à long terme.",
-        "pineconeIndex": {
-          "__rl": true,
-          "value": "mnemos",
-          "mode": "list",
-          "cachedResultName": "mnemos"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
-      "typeVersion": 1,
-      "position": [
-        4500,
-        340
-      ],
-      "id": "dcf6c8fb-f7a8-434d-91a7-3161aa80fa53",
-      "name": "Pinecone Vector Store",
-      "credentials": {
-        "pineconeApi": {
-          "id": "qeIz9DAd1d4jW2wv",
-          "name": "PineconeApi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        4480,
-        520
-      ],
-      "id": "70e0af58-5b14-4f78-824b-9b8a88b3a7c2",
-      "name": "Embeddings OpenAI",
-      "credentials": {
-        "openAiApi": {
-          "id": "DUTWksCS3uLmTa9V",
-          "name": "OpenAi account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "update",
-        "documentURL": "https://docs.google.com/document/d/1PrXhVe_54saOn00Qr8NOPHFAodW_oYcA8rcfKut5Hjw/edit?usp=drive_link",
-        "actionsUi": {
-          "actionFields": [
-            {
-              "action": "insert",
-              "text": "=----\nDate : {{ $now.format(\"dd MMM'.' yyyy 'à' HH'h' mm'min.' ss'sec.'\")}} //\nRequête :{{ $json.message.content }} //\n----"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.googleDocs",
-      "typeVersion": 2,
-      "position": [
-        3700,
-        -140
-      ],
-      "id": "d1928730-a66d-4e61-9f7e-cddaf0b7b622",
-      "name": "Google Docs",
-      "credentials": {
-        "googleDocsOAuth2Api": {
-          "id": "tqZ8xv4mafrzAWv9",
-          "name": "Google Docs account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "update",
-        "documentURL": "https://docs.google.com/document/d/1PrXhVe_54saOn00Qr8NOPHFAodW_oYcA8rcfKut5Hjw/edit?usp=drive_link",
-        "actionsUi": {
-          "actionFields": [
-            {
-              "action": "insert",
-              "text": "=----\nDate : {{ $now.format(\"dd MMM'.' yyyy 'à' HH'h' mm'min.' ss'sec.'\")}} //\nRéponse de J.A.R.E.D :{{ $json.output }} //\n----"
-            }
-          ]
-        }
-      },
-      "type": "n8n-nodes-base.googleDocs",
-      "typeVersion": 2,
-      "position": [
-        4360,
-        -140
-      ],
-      "id": "70a35a12-0359-4219-bee1-956f2e41a9dd",
-      "name": "Google Docs1",
-      "credentials": {
-        "googleDocsOAuth2Api": {
-          "id": "tqZ8xv4mafrzAWv9",
-          "name": "Google Docs account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "get",
-        "documentURL": "https://docs.google.com/document/d/1PrXhVe_54saOn00Qr8NOPHFAodW_oYcA8rcfKut5Hjw/edit?usp=drive_link"
-      },
-      "type": "n8n-nodes-base.googleDocsTool",
-      "typeVersion": 2,
-      "position": [
-        4680,
-        200
-      ],
-      "id": "5ec3de0d-086f-4193-8bad-c87af274090f",
-      "name": "short-memory",
-      "credentials": {
-        "googleDocsOAuth2Api": {
-          "id": "tqZ8xv4mafrzAWv9",
-          "name": "Google Docs account"
-        }
-      }
     }
   ],
   "connections": {
@@ -878,143 +419,6 @@
             "node": "OUTPUT_Telegram",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "Google Docs1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "CHRONOS": {
-      "ai_tool": [
-        [
-          {
-            "node": "J.A.R.E.D.",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "ARCHIVUS": {
-      "ai_tool": [
-        [
-          {
-            "node": "J.A.R.E.D.",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "NEXUS": {
-      "ai_tool": [
-        [
-          {
-            "node": "J.A.R.E.D.",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "HERMES": {
-      "ai_tool": [
-        [
-          {
-            "node": "J.A.R.E.D.",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "TASKMASTER": {
-      "ai_tool": [
-        [
-          {
-            "node": "J.A.R.E.D.",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "NOTIONIS": {
-      "ai_tool": [
-        [
-          {
-            "node": "J.A.R.E.D.",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "SENTINEL": {
-      "ai_tool": [
-        [
-          {
-            "node": "J.A.R.E.D.",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "SUMMARION": {
-      "ai_tool": [
-        [
-          {
-            "node": "J.A.R.E.D.",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "SCRIPTO": {
-      "ai_tool": [
-        [
-          {
-            "node": "J.A.R.E.D.",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "PLANNER": {
-      "ai_tool": [
-        [
-          {
-            "node": "J.A.R.E.D.",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "REFINIO": {
-      "ai_tool": [
-        [
-          {
-            "node": "J.A.R.E.D.",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "ORACLE": {
-      "ai_tool": [
-        [
-          {
-            "node": "J.A.R.E.D.",
-            "type": "ai_tool",
-            "index": 0
           }
         ]
       ]
@@ -1048,11 +452,6 @@
             "node": "J.A.R.E.D.",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "Google Docs",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -1072,39 +471,6 @@
       "main": [
         []
       ]
-    },
-    "Pinecone Vector Store": {
-      "ai_tool": [
-        [
-          {
-            "node": "J.A.R.E.D.",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Embeddings OpenAI": {
-      "ai_embedding": [
-        [
-          {
-            "node": "Pinecone Vector Store",
-            "type": "ai_embedding",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "short-memory": {
-      "ai_tool": [
-        [
-          {
-            "node": "J.A.R.E.D.",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
     }
   },
   "settings": {
@@ -1115,7 +481,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "32503d82-2cce-4219-ac56-91286eb93a5f",
+  "versionId": "6590389d-2c0a-4d44-a88f-4773719db6ef",
   "triggerCount": 2,
   "tags": []
 }
